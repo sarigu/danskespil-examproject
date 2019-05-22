@@ -10,17 +10,53 @@
 	<title>Danske Spil Casino: Home</title>
 </head>
 <body>
+	<!-- Buttons to be displayed in the Nav -->
+	<h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
+	<button id="btn-login" class="btn btn-primary" data-toggle="modal" data-target="#modalSignIn">Log in</button>
+	<button id="btn-signup" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">Sign up</button>
+	<button id="logout" class="btn btn-primary" type="submit">Log out</button>
 
-	<!-- Buttons for menu -->
-	<!-- <button type="button" class="btn btn-primary">SIGN UP</button>
-	<button type="button" class="btn btn-primary">LOG IN</button> -->
+	<!-- Sign In Modal-->
+	<!-- Modal -->
+	<div class="modal fade" id="modalSignIn" tabindex="-1" role="dialog" aria-labelledby="modalSignInCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalSignInCenterTitle">Sign up to collect the daily freebies!</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="form-popup-signin">
+						<div class="form-group">
+							<label for="inputEmail1">Email address</label>
+							<input type="email" class="form-control" id="inputEmail1" aria-describedby="emailHelp"
+								placeholder="Enter email">
+						</div>
+						<div class="form-group">
+							<label for="inputPassword1">Password</label>
+							<input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+						</div>
+						
+						<div class="modal-footer">
+							<button class="btn btn-primary invisible" type="button" disabled >
+								<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+								<span class="sr-only">Loading...</span>
+							</button>
+							<button type="button" class="btn btn-outline-primary">Create an Account</button>
+							<button type="submit" class="btn btn-primary">Sign In</button>
+						</div>
+					</form>
+				</div>
 
-	<!-- Sign Up -->
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-		Launch Sign-up POP UP
-	</button>
-	
+			</div>
+		</div>
+	</div>
+	<!-- Modal Ends -->
+
+	<!-- Sign Up Modal-->
 	<!-- Modal -->
 	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
 		aria-hidden="true">
@@ -63,10 +99,8 @@
 	</div>
 	<!-- Modal Ends -->
 
-	<button id="logout">logout</button>
+	
 
-	<!-- TODO: Login -->
-	<!-- gonna be here -->
 	
 	<!-- The core Firebase JS SDK is always required and must be listed first -->
 	<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase-app.js"></script>
