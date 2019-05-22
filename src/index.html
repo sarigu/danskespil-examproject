@@ -9,7 +9,7 @@
 	<link rel="stylesheet" type="text/css" media="screen" href="css/styles.css" />	
 	<title>Danske Spil Casino: Home</title>
 </head>
-<body>
+<body class="display-flex flex-column">
 	<!-- Buttons to be displayed in the Nav -->
 	<h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
 	<button id="btn-login" class="btn btn-primary" data-toggle="modal" data-target="#modalSignIn">Log in</button>
@@ -122,7 +122,8 @@
 		// Initialize Firebase
 		firebase.initializeApp(firebaseConfig);</script>
 
-
+	<!-- PIXI JS -->
+	<script src="js/pixi.min.js"></script>
 	<!-- Bootstrap -->
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
 		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
