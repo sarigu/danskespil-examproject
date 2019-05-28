@@ -16,15 +16,17 @@ body {
   display: flex;
 }
 
-/*log in button, from here indres code*/
-.login {
+/*log in and sign up inside form buttons, from here indres code*/
+.login,
+.signup {
   background-color: #ed6d9c;
   border: none;
   color: white;
 }
 
-/*go back button*/
-.back {
+/*go back and already have an account form buttons*/
+.back,
+.already {
   background-color: white;
   color: #373a3c;
   border-color: #dddddd;
