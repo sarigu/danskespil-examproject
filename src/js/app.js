@@ -124,10 +124,10 @@ const app = new PIXI.Application({ backgroundColor: 0x1099bb });
 document.body.appendChild(app.view);
 
 app.loader
-	.add('examples/assets/eggHead.png', 'examples/assets/eggHead.png')
-	.add('examples/assets/flowerTop.png', 'examples/assets/flowerTop.png')
-	.add('examples/assets/helmlok.png', 'examples/assets/helmlok.png')
-	.add('examples/assets/skully.png', 'examples/assets/skully.png')
+	.add('../img/slots/brain.png', '../img/slots/brain.png')
+	.add('../img/slots/discotimes.png', '../img/slots/discotimes.png')
+	.add('../img/slots/grumpyman.png', '../img/slots/grumpyman.png')
+	.add('../img/slots/headball.png', '../img/slots/headball.png')
 	.load(onAssetsLoaded);
 
 const REEL_WIDTH = 160;
@@ -137,10 +137,10 @@ const SYMBOL_SIZE = 150;
 function onAssetsLoaded() {
 	// Create different slot symbols.
 	const slotTextures = [
-		PIXI.Texture.from('examples/assets/eggHead.png'),
-		PIXI.Texture.from('examples/assets/flowerTop.png'),
-		PIXI.Texture.from('examples/assets/helmlok.png'),
-		PIXI.Texture.from('examples/assets/skully.png'),
+		PIXI.Texture.from('../img/slots/brain.png'),
+		PIXI.Texture.from('../img/slots/discotimes.png'),
+		PIXI.Texture.from('../img/slots/grumpyman.png'),
+		PIXI.Texture.from('../img/slots/headball.png'),
 	];
 
 	// Build the reels
