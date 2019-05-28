@@ -3,8 +3,6 @@ body {
   width: 100vw;
 }
 
-
-
 .display-flex {
   display: flex;
 }
@@ -16,4 +14,76 @@ body {
 
 .flex-column {
   flex-direction: column;
+}
+
+/*nav*/
+.navbar {
+  background-color: #a88952;
+}
+.intro {
+  background-color: #81693b;
+}
+
+.intro {
+  color: white;
+  padding: 15px;
+}
+.navbar-toggler {
+  color: white;
+  border: none;
+}
+
+.navbar-dark .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgb(255,255,255)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.navbar-dark .navbar-text a:hover,
+.navbar-dark .navbar-text a:focus {
+  color: #554428 !important;
+}
+button.navbar-toggler:focus {
+  outline: 1px none;
+}
+
+.link,
+.nav-link {
+  color: white !important;
+}
+.nav-link:hover,
+.link:hover {
+  text-decoration: none;
+  color: #554428 !important;
+}
+.active .nav-link {
+  color: #554428 !important;
+}
+.logo {
+  max-width: 170px;
+}
+
+@media (min-width: 576px) {
+  .link {
+    position: relative;
+    right: 0vw;
+  }
+}
+
+@media (min-width: 768px) {
+  .link {
+    position: fixed;
+    right: 05vw;
+  }
+}
+
+@media (min-width: 992px) {
+  .link {
+    position: fixed;
+    right: 10vw;
+  }
+}
+@media (min-width: 1200px) {
+  .link {
+    position: fixed;
+    right: 10vw;
+  }
 }
