@@ -1,12 +1,9 @@
-/* GENERAL */
+/* GENERAL, only added font and bg color to the body */
 body {
   width: 100vw;
+  background-color: #fffdf4;
+  font-family: "Open Sans", sans-serif;
 }
-
-.display-flex {
-  display: flex;
-}
-
 .flex-center-center {
   justify-content: center;
   align-items: center;
@@ -15,15 +12,36 @@ body {
 .flex-column {
   flex-direction: column;
 }
+.display-flex {
+  display: flex;
+}
+
+/*log in button, from here indres code*/
+.login {
+  background-color: #ed6d9c;
+  border: none;
+  color: white;
+}
+
+/*go back button*/
+.back {
+  background-color: white;
+  color: #373a3c;
+  border-color: #dddddd;
+}
+.btn:hover {
+  background-color: #f19abc;
+}
 
 /*nav*/
 .navbar {
-  background-color: #a88952;
+  background-color: #a78a52;
 }
 .intro {
-  color: white;
   padding: 15px;
-  background-color: #81693b;
+  text-align: center;
+  color: #2e0202;
+  font-size: 16px;
 }
 
 .navbar-toggler {
@@ -46,14 +64,17 @@ button.navbar-toggler:focus {
 .link,
 .nav-link {
   color: white !important;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 .nav-link:hover,
 .link:hover {
   text-decoration: none;
-  color: #554428 !important;
+  color: #2e0202 !important;
 }
 .active .nav-link {
-  color: #554428 !important;
+  color: #2e0202 !important;
 }
 .logo {
   max-width: 170px;
@@ -85,3 +106,4 @@ button.navbar-toggler:focus {
     right: 10vw;
   }
 }
+/*indres code end*/

@@ -11,11 +11,12 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
    
     <title>Danske Spil Casino: Home</title>
   </head>
 
-
+<body>
   <nav class="navbar navbar-expand-md navbar-dark">
     <button
       class="navbar-toggler"
@@ -31,7 +32,14 @@
     </button>
 
     <a class="navbar-brand" ><img class="logo" src="img/logo.jpg"></a>
-    <a class="link" href="#">Log in</a>
+    <!--<a class="link" href="#">Log in</a>-->
+    <a
+      class=" link"
+      data-toggle="modal"
+      data-target="#modalSignIn"
+    >
+      Log in
+  </a>
     <div class="collapse navbar-collapse" id="navbarsExample04">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
@@ -40,45 +48,38 @@
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sign up</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Your dashboard</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">About Casino</a>
-        </li>
+          <a class="nav-link" href="#">Admin panel</a>
         <li class="nav-item">
           <a class="nav-link" href="https://casino.danskespil.dk/da?intcmp=top_menu_casino_brand">Casino homepage</a>
         </li>
       </ul>
     </div>
   </nav>
-
+  <button
+  id="btn-signup"
+  class="btn btn-primary"
+  data-toggle="modal"
+  data-target="#exampleModalCenter"
+>
+  Sign up
+</button>
+<button id="logout" class="btn btn-primary" type="submit">Log out</button>
   <p class="intro">
     Casino offers tons of state-of-art roullette, blackjack and slot machine
-    games. Our jackpot prizes blah blah
+    games. Our jackpot prizes are worth going for!
   </p>
 
     <!-- Buttons to be displayed in the Nav -->
     <h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
-    <button
+    <!--<button
       id="btn-login"
       class="btn btn-primary"
       data-toggle="modal"
       data-target="#modalSignIn"
     >
       Log in
-    </button>
-    <button
-      id="btn-signup"
-      class="btn btn-primary"
-      data-toggle="modal"
-      data-target="#exampleModalCenter"
-    >
-      Sign up
-    </button>
-    <button id="logout" class="btn btn-primary" type="submit">Log out</button>
+    </button>-->
+    
 
     <!-- Sign In Modal-->
     <!-- Modal -->
@@ -140,10 +141,10 @@
                   ></span>
                   <span class="sr-only">Loading...</span>
                 </button>
-                <button type="button" class="btn btn-outline-primary">
-                  Create an Account
+                <button type="button" class="btn btn-outline-primary back">
+                  BACK
                 </button>
-                <button type="submit" class="btn btn-primary">Sign In</button>
+                <button type="submit" class="btn btn-primary login">LOG IN</button>
               </div>
             </form>
           </div>
