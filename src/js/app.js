@@ -1,7 +1,3 @@
-import { signup, signin, logout, createUserInDB } from './firebase';
-import * as PIXI from 'pixi.js';
-
-
 // HTML ELEMENTS
 
 const formEl = document.getElementById("form-popup-signup");
@@ -120,14 +116,14 @@ firebase.auth().onAuthStateChanged(userAuth => {
 // SLOTS USING PIXI JS
 // https://www.pixijs.com
 
-const app = new PIXI.Application({ backgroundColor: 0x1099bb });
+const app = new PIXI.Application({ backgroundColor: 0x001f2f });
 document.body.appendChild(app.view);
 
 app.loader
-	.add('../img/slots/brain.png', '../img/slots/brain.png')
-	.add('../img/slots/discotimes.png', '../img/slots/discotimes.png')
-	.add('../img/slots/grumpyman.png', '../img/slots/grumpyman.png')
-	.add('../img/slots/headball.png', '../img/slots/headball.png')
+	.add('../src/img/slots/brain.png', '../src/img/slots/brain.png')
+	.add('../src/img/slots/discotimes.png', '../src/img/slots/discotimes.png')
+	.add('../src/img/slots/grumpyman.png', '../src/img/slots/grumpyman.png')
+	.add('../src/img/slots/headball.png', '../src/img/slots/headball.png')
 	.load(onAssetsLoaded);
 
 const REEL_WIDTH = 160;
@@ -137,10 +133,17 @@ const SYMBOL_SIZE = 150;
 function onAssetsLoaded() {
 	// Create different slot symbols.
 	const slotTextures = [
-		PIXI.Texture.from('../img/slots/brain.png'),
-		PIXI.Texture.from('../img/slots/discotimes.png'),
-		PIXI.Texture.from('../img/slots/grumpyman.png'),
-		PIXI.Texture.from('../img/slots/headball.png'),
+		PIXI.Texture.from('../src/img/slots/brain.png'),
+		PIXI.Texture.from('../src/img/slots/discotimes.png'),
+		PIXI.Texture.from('../src/img/slots/grumpyman.png'),
+		PIXI.Texture.from('../src/img/slots/headball.png'),
+		PIXI.Texture.from('../src/img/slots/johnybravo.png'),
+		PIXI.Texture.from('../src/img/slots/joker.png'),
+		PIXI.Texture.from('../src/img/slots/rabbit.png'),
+		PIXI.Texture.from('../src/img/slots/monk.png'),
+		PIXI.Texture.from('../src/img/slots/merlin.png'),
+		PIXI.Texture.from('../src/img/slots/mermaid.png'),
+		PIXI.Texture.from('../src/img/slots/skateboarder.png'),
 	];
 
 	// Build the reels
@@ -193,7 +196,7 @@ function onAssetsLoaded() {
 		fontSize: 36,
 		fontStyle: 'italic',
 		fontWeight: 'bold',
-		fill: ['#ffffff', '#00ff99'], // gradient
+		fill: '#00ff99',
 		stroke: '#4a1850',
 		strokeThickness: 5,
 		dropShadow: true,
@@ -211,7 +214,7 @@ function onAssetsLoaded() {
 	bottom.addChild(playText);
 
 	// Add header text
-	const headerText = new PIXI.Text('PIXI MONSTER SLOTS!', style);
+	const headerText = new PIXI.Text('BRAIN SPIN', style);
 	headerText.x = Math.round((top.width - headerText.width) / 2);
 	headerText.y = Math.round((margin - headerText.height) / 2);
 	top.addChild(headerText);

@@ -3,7 +3,7 @@ const db = firebase.firestore();
 /**
  * Functions exported to be used in other files
  */
-export function signup(email, password) {
+function signup(email, password) {
 	// Tell firebase to create a new user.
 	// Returns a promise
 	// It will fail if:
@@ -13,7 +13,7 @@ export function signup(email, password) {
 	return firebase.auth().createUserWithEmailAndPassword(email, password);
 }
 
-export function signin(email, password) {
+function signin(email, password) {
 	// Tell firebase to signin the user.
 	// Returns a promise
 	// It will fail if:
@@ -22,13 +22,13 @@ export function signin(email, password) {
 	return firebase.auth().signInWithEmailAndPassword(email, password);
 }
 
-export async function logout() {
+function logout() {
 	// Tell firebase to logout the current user.
 	// Returns a promise
-	await firebase.auth().signOut();
+	return firebase.auth().signOut();
 }
 
-export function createUserInDB(user, additionalData) {
+function createUserInDB(user, additionalData) {
 	// We create a promise so we can wait for it at the place where the function is called.
 	// Returns a promise
 	return new Promise((resolve, reject) => {
