@@ -1,0 +1,8 @@
+/* Buttons */
+.btn__base {
+    font-weight: 600;
+}
+.btn--pink {
+    background-color: #ec3a7b;
+    border: #ec3a7b;
+}

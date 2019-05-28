@@ -11,6 +11,8 @@ const logoutButtonEl = document.getElementById("logout");
 const signupButtonEl = document.getElementById("btn-signup");
 const greetingUserEl = document.getElementById("userName");
 
+let openedModal;
+
 
 // EVENT LISTENERS
 
@@ -30,6 +32,8 @@ let user = {
 }
 
 function onSignup(e) {
+	console.log(e);
+	
 	e.preventDefault();
 
 	user.username = usernameEl.value;
@@ -63,6 +67,23 @@ function onSignin(e) {
 			console.log('err: ', err.message);
 			window.alert(err.message);
 		})
+}
+
+
+// UTILITIES
+// Modals
+function setOpenedModal(e) {
+	e.preventDefault();
+	console.log(e);
+	
+	// openedModal = ;
+}
+function closePreviousModal(e) {
+	if (openedModal != "") {
+		$(openedModal).modal('hide');
+		openedModal = '';
+	}
+	
 }
 
 
