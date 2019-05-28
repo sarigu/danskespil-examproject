@@ -21,13 +21,11 @@ body {
   background-color: #a88952;
 }
 .intro {
+  color: white;
+  padding: 15px;
   background-color: #81693b;
 }
 
-.intro {
-  color: white;
-  padding: 15px;
-}
 .navbar-toggler {
   color: white;
   border: none;

@@ -25,7 +25,7 @@
     "since 2017-06"
   ],
   "postcss": {
-    "modules": true,
+    "modules": false,
     "plugins": {
       "autoprefixer": {
         "browsers": [
