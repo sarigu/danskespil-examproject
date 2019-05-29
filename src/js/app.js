@@ -11,15 +11,37 @@ const logoutButtonEl = document.getElementById("logout");
 const signupButtonEl = document.getElementById("btn-signup");
 const greetingUserEl = document.getElementById("userName");
 
-let openedModal;
+let openedModalId;
 
 
-// EVENT LISTENERS
+// INIT
 
-formEl.addEventListener("submit", onSignup);
-formSignInEl.addEventListener("submit", onSignin);
-logoutButtonEl.addEventListener("click", onLogout);
-signupButtonEl.addEventListener("submit", onSignup);
+window.addEventListener('DOMContentLoaded', init());
+
+function init(params) {
+	// Event listeners
+	formEl.addEventListener("submit", onSignup);
+	formSignInEl.addEventListener("submit", onSignin);
+	logoutButtonEl.addEventListener("click", onLogout);
+	signupButtonEl.addEventListener("submit", onSignup);
+	
+
+}
+
+
+// UTILITIES
+
+// Modals
+function setOpenedModal(modalId) {
+	openedModalId = modalId;
+}
+
+function closePreviousModal(nextModalId) {
+	if (openedModalId !== '') {
+		$(openedModalId).modal('hide');
+		setOpenedModal(nextModalId);
+	}
+}
 
 
 // SIGN-UP METHOD
@@ -33,7 +55,7 @@ let user = {
 
 function onSignup(e) {
 	console.log(e);
-	
+
 	e.preventDefault();
 
 	user.username = usernameEl.value;
@@ -62,6 +84,7 @@ function onSignin(e) {
 			console.log('res: ', res);
 			$('#modalSignIn').modal('hide');
 			greetingUserEl.textContent = user.username;
+			document.getElementById('greetingUser').style.display = "initial";
 		})
 		.catch(err => {
 			console.log('err: ', err.message);
@@ -70,27 +93,15 @@ function onSignin(e) {
 }
 
 
-// UTILITIES
-// Modals
-function setOpenedModal(e) {
-	e.preventDefault();
-	console.log(e);
-	
-	// openedModal = ;
-}
-function closePreviousModal(e) {
-	if (openedModal != "") {
-		$(openedModal).modal('hide');
-		openedModal = '';
-	}
-	
-}
-
-
 // LOGOUT METHOD
 
 function onLogout() {
+	window.alert('Have a great day and see you next time! 👋');
 	logout();
+	greetingUserEl.textContent = "";
+	document.getElementById('greetingUser').style.display = "none";
+
+
 }
 
 

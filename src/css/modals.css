@@ -6,3 +6,8 @@
     background-color: #ec3a7b;
     border: #ec3a7b;
 }
+
+/* Greeting the USer */
+#greetingUser {
+    display: none;
+}

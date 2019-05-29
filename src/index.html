@@ -19,14 +19,14 @@
         <link rel="stylesheet" type="text/css" media="screen" href="css/modals.css" />
     <title>Danske Spil Casino: Home</title>
   </head>
-  
+
   <body>
     <!-- Buttons to be displayed in the Nav -->
     <h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
     <button
       id="btn-login"
       class="btn btn-primary btn__base btn--pink"
-      onclick="setOpenedModal()"
+      onclick="setOpenedModal('#modalSignIn')"
       data-toggle="modal"
       data-target="#modalSignIn"
     >
@@ -35,7 +35,7 @@
     <button
       id="btn-signup"
       class="btn btn-primary btn__base btn--pink"
-      onclick="setOpenedModal()"
+      onclick="setOpenedModal('#exampleModalCenter')"
       data-toggle="modal"
       data-target="#exampleModalCenter"
     >
@@ -44,7 +44,6 @@
     <button 
       id="logout" 
       class="btn btn-primary btn__base btn--pink" 
-      onclick="setOpenedModal()"
       type="submit">
       Log out
   </button>
@@ -97,7 +96,7 @@
               </div>
 
               <div class="modal-footer">
-                <button onclick="closePreviousModal()" type="button" class="btn btn-outline-secondary btn__base" data-toggle="modal" data-target="#exampleModalCenter">
+                <button onclick="closePreviousModal('#exampleModalCenter')" type="button" class="btn btn-outline-secondary btn__base" data-toggle="modal" data-target="#exampleModalCenter">
                   Create an Account
                 </button>
                 <button type="submit" class="btn btn-primary btn__base btn--pink">Login</button>
@@ -165,7 +164,7 @@
               </div>
 
               <div class="modal-footer">
-                <button onClick={closePreviousModal} type="button" class="btn btn-outline-secondary btn__base" data-toggle="modal" data-target="#modalSignIn">
+                <button onclick="closePreviousModal('#modalSignIn')" type="button" class="btn btn-outline-secondary btn__base" data-toggle="modal" data-target="#modalSignIn">
                   Already Have an Account
                 </button>
                 <button type="submit" class="btn btn-primary btn__base btn--pink">
