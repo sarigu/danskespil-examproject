@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="css/styles.css"
+    />
+    <title>Danske Spil Casino: Home</title>
+  </head>
+  <body>
+    <main>
+      <div id="casinodescription">The description of casino goes here</div>
+      <div id="brainSpin"></div>
+      <div id="subscribefield">
+        <p>Subscribe to see our latest news</p>
+
+        <div id="subscribebox">
+          <input type="email" name="email" id="email" value="Email address" />
+          <button>Subscribe</button>
+        </div>
+      </div>
+      <div id="games">
+        <h1>Featured Casino Game</h1>
+        <div id="underline"></div>
+        <img
+          id="arcadeBomb"
+          src="img/casino-games/arcade_bomb.jpg"
+          alt="arcade_bomb"
+        />
+        <img
+          id="blackKnight"
+          src="img/casino-games/black_knight.jpg"
+          alt="black_knight"
+        />
+        <img
+          id="cashVandal"
+          src="img/casino-games/cash_vandal.jpg"
+          alt="cash_vandal"
+        />
+        <img
+          id="ecuadorGold"
+          src="img/casino-games/ecuador_gold.jpg"
+          alt="ecuador_gold"
+        />
+        <img
+          id="crazyGenie"
+          src="img/casino-games/crazy_genie.jpg"
+          alt="crazy_genie"
+        />
+        <img
+          id="grandWheel"
+          src="img/casino-games/grand_wheel.jpg"
+          alt="grand_wheel"
+        />
+        <img
+          id="cinderellasBall"
+          src="img/casino-games/cinderellas_ball.jpg"
+          alt="cinderellas_ball"
+        />
+        <img
+          id="holyDiver"
+          src="img/casino-games/holy_diver.jpg"
+          alt="holy_diver"
+        />
+        <img id="chi" src="img/casino-games/chi.jpg" alt="chi" />
+        <img
+          id="irishFrenzy"
+          src="img/casino-games/irish_frenzy.jpg"
+          alt="irish frenzy"
+        />
+      </div>
+      <a id="casinolink" href="https://casino.danskespil.dk/da"
+        >Visit The Full Casino Website</a
+      >
+    </main>
+    <footer>
+      <img src="img/logo_danskespil.jpg" alt="danske spil logo" />
+      <div id="table" style="display: table;">
+        <div style="display: table-row;">
+          <div class="column" style="display: table-cell;">
+            <p>Danske Spil A/S</p>
+            <p>Korsdalvej 135</p>
+            <p>2605 Brønby</p>
+          </div>
+          <div class="column" style="display: table-cell;">
+            <p>Cookies</p>
+            <p>Rules for playing</p>
+            <p>Chances for winning</p>
+          </div>
+          <div class="column" style="display: table-cell;">
+            <p>Contact Customer Service every day 9-23</p>
+            <button>Contact Customer Service</button>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Pixi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.3/pixi.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.0.3/pixi.min.js.map"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+			https://firebase.google.com/docs/web/setup#config-web-app -->
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-firestore.js"></script>
+
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyAOpi471GQehJOJNj8C7bVOnqQ3-SSiTyE",
+        authDomain: "danskespil-970a3.firebaseapp.com",
+        databaseURL: "https://danskespil-970a3.firebaseio.com",
+        projectId: "danskespil-970a3",
+        storageBucket: "danskespil-970a3.appspot.com",
+        messagingSenderId: "253764022587",
+        appId: "1:253764022587:web:40c324ef9c1779c0"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <!-- Bootstrap -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="js/firebase.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
