@@ -1,3 +1,9 @@
+.display__flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 /* Buttons */
 .btn__base {
     font-weight: 600;
@@ -10,4 +16,7 @@
 /* Greeting the USer */
 #greetingUser {
     display: none;
+}
+.img--small {
+    height: 100px;
 }

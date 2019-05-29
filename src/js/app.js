@@ -13,6 +13,13 @@ const greetingUserEl = document.getElementById("userName");
 
 let openedModalId;
 
+let user = {
+	username: "",
+	email: "",
+	spins: 0,
+	score: 1000
+}
+
 
 // INIT
 
@@ -24,6 +31,8 @@ function init(params) {
 	formSignInEl.addEventListener("submit", onSignin);
 	logoutButtonEl.addEventListener("click", onLogout);
 	signupButtonEl.addEventListener("submit", onSignup);
+	
+	// setTimeout(welcomeUser(user), 1000);
 	
 
 }
@@ -37,21 +46,34 @@ function setOpenedModal(modalId) {
 }
 
 function closePreviousModal(nextModalId) {
-	if (openedModalId !== '') {
-		$(openedModalId).modal('hide');
-		setOpenedModal(nextModalId);
-	}
+	$(openedModalId).modal('hide');
+	setOpenedModal(nextModalId);	
+}
+
+function welcomeUser(user) {
+	console.log("welcome loading....");
+	setTimeout(()=> {
+		if (user.username === "" || user.username === "guest") {
+			$('#modalWelcomeNew').modal('show');
+			user.spins = 3;
+			user.username = "guest";
+
+			console.log("welcome: ", user);
+		} else {
+			console.log(user);
+			
+			document.getElementById('modalWelcomeNewTitle').innerHTML = `Welcome back to Casino, ${user.username}!`
+			document.getElementById('welcomeText').innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
+			$('#modalWelcomeNew').modal('show');
+			user.spins = user.spins + 10;
+			
+		}
+	}, 1000);
+	
 }
 
 
 // SIGN-UP METHOD
-
-let user = {
-	username: "",
-	email: "",
-	spins: 3,
-	score: 1000
-}
 
 function onSignup(e) {
 	console.log(e);
@@ -113,8 +135,6 @@ firebase.auth().onAuthStateChanged(userAuth => {
   if (userAuth) {
 	// We get here if:
 	// - User navigated to the site and is logged in (remembers him)
-	greetingUserEl.textContent = user.username;
-
 	// In case it's a new sign-up, we need to prepare what info we want to save in the DB
 	const additionalInformation = {
 		username: user.username,
@@ -126,21 +146,24 @@ firebase.auth().onAuthStateChanged(userAuth => {
 	// or finds and returns the existing user document.
 	// Either way, we get back the user document.
 	createUserInDB(userAuth, additionalInformation)
-		.then(user => {
+		.then(dbUser => {
 			// This is where we actually get the currently logged in user document.
-			console.log('user: ', user);
+			// console.log('user: ', user);
+			user = { ...dbUser };
+
 			greetingUserEl.textContent = user.username;
+			welcomeUser(user);
 		})
 		.catch(err => {
-			console.log('err: ', err);
+			// console.log('err: ', err);
 			window.alert(err);
 		})
   } else {
 		// We get here if:
 		// - User navigated to the site and is not logged in
 		// - User just clicked logout
-
-		console.log('User is signed out');
+	  	welcomeUser(user);
+		console.log('User not logged in');
   }
 });
 
