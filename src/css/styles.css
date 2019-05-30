@@ -4,36 +4,6 @@ body {
   background-color: #fffdf4;
   font-family: "Open Sans", sans-serif;
 }
-.flex-center-center {
-  justify-content: center;
-  align-items: center;
-}
-
-.flex-column {
-  flex-direction: column;
-}
-.display-flex {
-  display: flex;
-}
-
-/*log in and sign up inside form buttons, from here indres code*/
-.login,
-.signup {
-  background-color: #ed6d9c;
-  border: none;
-  color: white;
-}
-
-/*go back and already have an account form buttons*/
-.back,
-.already {
-  background-color: white;
-  color: #373a3c;
-  border-color: #dddddd;
-}
-.btn:hover {
-  background-color: #f19abc;
-}
 
 /*nav*/
 .navbar {
@@ -108,4 +78,3 @@ button.navbar-toggler:focus {
     right: 10vw;
   }
 }
-/*indres code end*/
