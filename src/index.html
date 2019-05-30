@@ -37,13 +37,15 @@
       
           <a class="navbar-brand" ><img class="logo" src="img/logo.jpg"></a>
           <!--<a class="link" href="#">Log in</a>-->
-          <a
-            class="link"
-            data-toggle="modal"
-            data-target="#modalSignIn"
-          >
-            Log in
-        </a>
+          <button
+      id="btn-login"
+      class="btn btn-link /*btn__base btn--pink*/ link"
+      onclick="setOpenedModal('#modalSignIn')"
+      data-toggle="modal"
+      data-target="#modalSignIn"
+    >
+      Log in
+    </button>
           <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
@@ -61,19 +63,11 @@
         </nav>
         <p class="intro">
             Casino offers tons of state-of-art roullette, blackjack and slot machine
-            games. Our jackpot prizes are worth going for!
+            games. <br> Our jackpot prizes are worth going for!
           </p>
     <!-- Buttons to be displayed in the Nav -->
     <h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
-    <button
-      id="btn-login"
-      class="btn btn-primary btn__base btn--pink"
-      onclick="setOpenedModal('#modalSignIn')"
-      data-toggle="modal"
-      data-target="#modalSignIn"
-    >
-      Log in
-    </button>
+    
     <button
       id="btn-signup"
       class="btn btn-primary btn__base btn--pink"
