@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
 }
 /* Buttons */
 .btn__base {
@@ -18,5 +19,6 @@
     display: none;
 }
 .img--small {
-    height: 100px;
+    width: 100px;
+
 }
