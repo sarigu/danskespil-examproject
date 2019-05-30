@@ -22,6 +22,18 @@
 
   <body>
       <nav class="navbar navbar-expand-md navbar-dark">
+        <div class="link ">
+          <h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
+          <button id="btn-login" class="btn btn-link" onclick="setOpenedModal('#modalSignIn')" data-toggle="modal"
+            data-target="#modalSignIn">
+            Log in
+          </button>
+          <h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
+          <button id="logout" class="btn btn-link" type="submit">
+            Log out
+          </button>
+        </div>
+
           <button
             class="navbar-toggler"
             type="button"
@@ -34,24 +46,15 @@
             <span class="navbar-toggler-icon">
              
           </button>
-      
           <a class="navbar-brand" ><img class="logo" src="img/logo.jpg"></a>
-          <!--<a class="link" href="#">Log in</a>-->
-          <button
-      id="btn-login"
-      class="btn btn-link /*btn__base btn--pink*/ link"
-      onclick="setOpenedModal('#modalSignIn')"
-      data-toggle="modal"
-      data-target="#modalSignIn"
-    >
-      Log in
-    </button>
+          
+
+
           <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
                 <a class="nav-link" href="#"
-                  >Home <span class="sr-only">(current)</span></a
-                >
+                  >Home <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Admin panel</a>
@@ -63,16 +66,19 @@
         </nav>
 
         <main>
-            <p class="intro">
-                Casino offers tons of state-of-art roullette, blackjack and slot machine
-                games. Our jackpot prizes are worth going for!
-              </p>
-          <div id="brainSpin"></div>
+          <p class="intro">
+              Casino offers tons of state-of-art roullette, blackjack and slot machine
+              games.<br>Our jackpot prizes are worth going for!
+          </p>
+          <!-- GAME -->
+          <div id="brainSpin">
+
+          </div>
           <div id="subscribefield">
-            <p>Subscribe to see our latest news</p>
+            <p>Subscribe to win prizes and to see our latest news</p>
     
             <div id="subscribebox">
-              <input type="email" name="email" id="email" value="Email address" />
+              <input type="email" name="email" id="emailSubscribe" value="Email address" />
               <button>Subscribe</button>
             </div>
           </div>
@@ -152,51 +158,6 @@
           </div>
         </footer>
     
-    
-
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> add layout and background image
-    <!-- Buttons to be displayed in the Nav -->
-    <h6 id="greetingUser">Hello, <span id="userName">User</span>!</h6>
-    
-    <button
-      id="btn-signup"
-      class="btn btn-primary btn__base btn--pink"
-      onclick="setOpenedModal('#exampleModalCenter')"
-      data-toggle="modal"
-      data-target="#exampleModalCenter"
-    >
-      Sign up
-    </button>
-    <button 
-      id="logout" 
-      class="btn btn-primary btn__base btn--pink" 
-      type="submit">
-      Log out
-  </button>
-
     <!-- Sign In Modal-->
     <!-- Modal -->
     <div

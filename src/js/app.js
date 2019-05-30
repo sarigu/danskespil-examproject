@@ -8,8 +8,10 @@ const emailInputSignInEl = document.getElementById("inputEmail1");
 const passwordInputSignInEl = document.getElementById("inputPassword1");
 const passwordInputEl = document.getElementById("exampleInputPassword1");
 const logoutButtonEl = document.getElementById("logout");
-const signupButtonEl = document.getElementById("btn-signup");
+const loginButtonEl = document.getElementById("btn-login");
 const greetingUserEl = document.getElementById("userName");
+
+
 
 let openedModalId;
 
@@ -30,9 +32,8 @@ function init(params) {
 	formEl.addEventListener("submit", onSignup);
 	formSignInEl.addEventListener("submit", onSignin);
 	logoutButtonEl.addEventListener("click", onLogout);
-	signupButtonEl.addEventListener("submit", onSignup);
 	
-	// setTimeout(welcomeUser(user), 1000);
+	
 	
 
 }
@@ -152,6 +153,9 @@ firebase.auth().onAuthStateChanged(userAuth => {
 			user = { ...dbUser };
 
 			greetingUserEl.textContent = user.username;
+			loginButtonEl.style.display = "none";
+			logoutButtonEl.style.display = "block";
+			document.getElementById('greetingUser').style.display = "block";
 			welcomeUser(user);
 		})
 		.catch(err => {
@@ -162,6 +166,10 @@ firebase.auth().onAuthStateChanged(userAuth => {
 		// We get here if:
 		// - User navigated to the site and is not logged in
 		// - User just clicked logout
+		loginButtonEl.style.display = "block";
+		logoutButtonEl.style.display = "none";
+		document.getElementById('greetingUser').style.display = "none";
+		
 	  	welcomeUser(user);
 		console.log('User not logged in');
   }
@@ -172,7 +180,7 @@ firebase.auth().onAuthStateChanged(userAuth => {
 // https://www.pixijs.com
 
 const app = new PIXI.Application({ backgroundColor: 0x001f2f });
-document.body.appendChild(app.view);
+document.getElementById("brainSpin").appendChild(app.view);
 
 app.loader
 	.add('../src/img/slots/brain.png', '../src/img/slots/brain.png')

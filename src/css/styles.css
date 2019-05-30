@@ -1,10 +1,3 @@
-/* GENERAL */
-body {
-  width: 100vw;
-  background-color: #fffdf4;
-  font-family: "Open Sans", sans-serif;
-}
-
 @import url("https://fonts.googleapis.com/css?family=Fontdiner+Swanky&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 
@@ -12,27 +5,24 @@ body {
 body {
   width: 100vw;
   background-color: #fffdf4;
-}
-
-* {
   font-family: "Open Sans", sans-serif;
 }
 
-h1 {
-  font-weight: bold;
+/* NAVIGATION */
+#logout {
+  display: none;
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
 }
-
-p {
-  font-size: 16px;
-  font-weight: 400;
+#btn-login {
+  text-decoration: none;
+  font-weight: 600;
+  color: white;
 }
-
-button,
-a {
-  font-weight: 400;
+#btn-login:hover , #logout:hover {
+  color: #2f0303;
 }
-
-/*navbar indre*/
 .navbar {
   background-color: #a78a52;
 }
@@ -89,7 +79,7 @@ button.navbar-toggler:focus {
 @media (min-width: 768px) {
   .link {
     position: fixed;
-    right: 05vw;
+    right: 5vw;
   }
 }
 
@@ -130,7 +120,6 @@ button.navbar-toggler:focus {
     #4b6d79,
     #3e5963
   );
-
   color: white;
 }
 
@@ -140,12 +129,7 @@ button.navbar-toggler:focus {
   margin-left: 27%;
   margin-right: 27%;
   border-radius: 5px;
-  /*
-  width: 50%;*/
-  /*padding: 30px;
-  margin: 150px;*/
-  /*margin-left: 400px;
-  margin-right: 400px;*/
+
   display: grid;
   grid-template-columns: 1fr 1.8fr 1fr;
   grid-template-rows: 0.6fr 1fr 0.6fr 0.6fr; /*or 0.6 for buttons*/
@@ -232,23 +216,22 @@ img {
     margin-bottom: 0;
   }
 }
-
 /*under18 end*/
+
 
 /* //// Layout /////*/
 
 /* Game */
-
 #brainSpin {
-  width: 382px;
-  height: 543px;
+  box-sizing: border-box;
+  width: 90vw;
+  height: 100vh;
   border-radius: 1px 1px 1px 1px;
   background-color: #2c4b62;
   margin: auto;
 }
 
 /* Field to subscribe */
-
 #subscribefield {
   margin-top: 23px;
   background-color: #8a7143;
@@ -277,6 +260,7 @@ img {
   border: none;
   margin: 25px 30.93px 8px auto;
   padding-left: 6px;
+  border-radius: 5px;
 }
 
 #subscribebox button {
@@ -426,10 +410,6 @@ footer img {
 }
 
 @media only screen and (min-width: 900px) {
-  p {
-    font-size: 24px;
-  }
-
   #brainSpin {
     width: 1014.93px;
     height: 543px;
