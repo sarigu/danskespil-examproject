@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>jSlots Slot Machine - Matthew Lein</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="http://fonts.googleapis.com/css?family=Gravitas+One&text=1234567"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <style type="text/css"></style>
+  </head>
+  <body>
+    <div class="fancy">
+      <ul class="slot" id="machine">
+        <!-- In reverse order so the 7s show on load -->
+        <li><span>win</span></li>
+        <li><span>lose</span></li>
+        <li><span>lose</span></li>
+        <li><span>lose</span></li>
+        <li><span>merlin</span></li>
+      </ul>
+      <ul class="slot" id="machine">
+        <!-- In reverse order so the 7s show on load -->
+        <li><span>win</span></li>
+        <li><span>lose</span></li>
+        <li><span>lose</span></li>
+        <li><span>lose</span></li>
+        <li><span>merlin</span></li>
+      </ul>
+      <ul class="slot" id="machine">
+        <!-- In reverse order so the 7s show on load -->
+        <li><span>brain</span></li>
+        <li><span>lose</span></li>
+        <li><span>lose</span></li>
+        <li><span>lose</span></li>
+        <li><span>win</span></li>
+      </ul>
+      <input type="button" id="playFancy" value="Play" />
+    </div>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+    <script
+      src="jquery.easing.1.3.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script
+      src="jquery.jSlots.min.js"
+      type="text/javascript"
+      charset="utf-8"
+    ></script>
+    <script type="text/javascript" charset="utf-8">
+      // slot middle example
+      $(".fancy .slot").jSlots({
+        number: 5,
+        winnerNumber: 1,
+        spinner: "#playFancy",
+        easing: "easeOutSine",
+        time: 7000,
+        loops: 6,
+        onStart: function() {
+          $(".slot").removeClass("winner");
+        },
+        onWin: function(winCount, winners) {
+          // only fires if you win
+
+          // react to the # of winning slots
+          if (winCount === 1) {
+            console.log("You got " + winCount + " brain!!!");
+          } else if (winCount > 1) {
+            console.log("You got " + winCount + " brains’s!!!");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>
