@@ -2,3 +2,143 @@
 body {
   width: 100vw;
 }
+/* GENERAL */
+body {
+  width: 100vw;
+}
+
+/*under18*/
+.under18pagehtml {
+  min-height: 100vh;
+}
+
+.under18pagebody {
+  font-family: "Open Sans", sans-serif;
+  /*background-color: #2c4b62;*/
+  background-image: linear-gradient(
+    to bottom,
+    #95f3ff,
+    #92ebf9,
+    #8fe3f2,
+    #8cdcec,
+    #89d4e5,
+    #82c6d8,
+    #7ab9ca,
+    #73acbd,
+    #6596a6,
+    #58818f,
+    #4b6d79,
+    #3e5963
+  );
+
+  color: white;
+}
+
+.wrapper {
+  background-color: #4b747e;
+  margin-top: 7%;
+  margin-left: 27%;
+  margin-right: 27%;
+  border-radius: 5px;
+  /*
+  width: 50%;*/
+  /*padding: 30px;
+  margin: 150px;*/
+  /*margin-left: 400px;
+  margin-right: 400px;*/
+  display: grid;
+  grid-template-columns: 1fr 1.8fr 1fr;
+  grid-template-rows: 0.6fr 1fr 0.6fr 0.6fr; /*or 0.6 for buttons*/
+  grid-template-areas:
+    ". logo1 ."
+    ". warning ."
+    ". over18 ."
+    ". under18 .";
+}
+
+.logo1 {
+  margin-top: 20%;
+  grid-area: logo1;
+  padding: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  width: 200px;
+}
+.warning {
+  grid-area: warning;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 12px;
+  margin-top: 2%;
+}
+
+.over18 {
+  grid-area: over18;
+  text-align: center;
+  margin-top: 15%;
+  margin-bottom: 10%;
+}
+
+.under18 {
+  grid-area: under18;
+  text-align: center;
+  margin-bottom: 20%;
+}
+.over18btn {
+  color: white;
+  text-decoration: none;
+  background-color: #25445b;
+  padding: 4%;
+  padding-left: 17%;
+  padding-right: 17%;
+  border-radius: 17px;
+  font-size: 18px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+}
+.under18btn {
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 3%;
+  padding-left: 16%;
+  padding-right: 17%;
+  color: #000000;
+  background-color: white;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.4);
+  font-weight: 700;
+}
+@media screen and (max-width: 1024px) {
+  .wrapper {
+    margin-left: 20%;
+    margin-right: 20%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .wrapper {
+    grid-template-columns: 0.7fr 1.8fr 0.7fr;
+    grid-template-rows: 0.6fr 1fr 0.3fr 0.3fr;
+  }
+  .under18 {
+    margin-bottom: 5%;
+  }
+}
+@media screen and (max-width: 375px) {
+  .wrapper {
+    grid-template-columns: 0.7fr 1.8fr 0.7fr;
+    grid-template-rows: 0.3fr 1fr 0.3fr 0.3fr;
+  }
+  .under18 {
+    margin-bottom: 5%;
+  }
+  .over18 {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+/*under18 end*/
