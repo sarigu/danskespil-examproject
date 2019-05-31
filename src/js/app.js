@@ -2,6 +2,7 @@
 
 const formEl = document.getElementById("form-popup-signup");
 const formSignInEl = document.getElementById("form-popup-signin");
+const formSubscribeEl = document.getElementById("subscribebox");
 const usernameEl = document.getElementById("exampleInputUsername");
 const emailInputEl = document.getElementById("exampleInputEmail1");
 const emailInputSignInEl = document.getElementById("inputEmail1");
@@ -32,6 +33,7 @@ function init(params) {
 	formEl.addEventListener("submit", onSignup);
 	formSignInEl.addEventListener("submit", onSignin);
 	logoutButtonEl.addEventListener("click", onLogout);
+	formSubscribeEl.addEventListener("submit", subscribe);
 	
 	
 	
@@ -70,7 +72,19 @@ function welcomeUser(user) {
 			
 		}
 	}, 1000);
-	
+}
+
+function subscribe(e) {
+	e.preventDefault();
+
+	let email = formSubscribeEl.querySelector('input').value;
+
+	if (user.email === "") {
+		user.email = email;
+	} else {
+		window.alert(`You have already subscribed using this email: ${user.email}`);
+	}
+	console.log(user);
 }
 
 
@@ -389,9 +403,3 @@ function lerp(a1, a2, t) {
 function backout(amount) {
 	return t => (--t * t * ((amount + 1) * t + amount) + 1);
 }
-
-
-
-
-
-
