@@ -20,7 +20,8 @@ body {
   font-weight: 600;
   color: white;
 }
-#btn-login:hover , #logout:hover {
+#btn-login:hover,
+#logout:hover {
   color: #2f0303;
 }
 .navbar {
@@ -218,7 +219,6 @@ img {
 }
 /*under18 end*/
 
-
 /* //// Layout /////*/
 
 /* Game */
@@ -233,7 +233,6 @@ img {
 
 /* Field to subscribe */
 #subscribefield {
-  margin-top: 23px;
   background-color: #8a7143;
   width: 100%;
   height: 148px;
@@ -276,7 +275,7 @@ img {
 
 /* Section of games */
 
-#games {
+#othergames {
   margin: auto 26px 30px 27px;
   padding-bottom: 2em;
   display: grid;
@@ -293,7 +292,7 @@ img {
   border-radius: 5px;
 }
 
-#games h1 {
+#othergames h1 {
   grid-area: heading;
   color: #2e0202;
   font-size: 28px;
@@ -380,36 +379,54 @@ img {
 
 footer {
   margin-top: 74.07px;
-  height: 220px;
   background-color: #a78a52;
   color: white;
-  padding: 20px;
+  padding: 10x;
+  height: 150px;
 }
 
 footer img {
   width: 30%;
-  margin-left: 10px;
+  margin: 15px auto 15px 8px;
 }
 
-#table p {
-  font-size: 12px;
+#table {
+  margin-left: 12px;
+}
+
+#table a {
+  color: white;
+  text-decoration: none;
 }
 
 .column {
-  padding: 15px;
+  width: 130px;
+  font-size: 11px;
 }
 
-.column button {
+.column #customerservice {
   color: white;
   height: 39px;
-  width: 186.07px;
   border: none;
   border-radius: 5px 5px 5px 5px;
   background-color: #8a7143;
-  font-size: 12px;
+  padding: 8px;
+  box-shadow: 0px 3px 6px #00000016;
+  font-size: 10px;
+  text-decoration: none;
 }
 
 @media only screen and (min-width: 900px) {
+  #game {
+    background-image: url(../img/slots/background.jpg);
+    height: 100%;
+    background-repeat: no-repeat;
+  }
+
+  .intro {
+    color: white;
+  }
+
   #brainSpin {
     width: 1014.93px;
     height: 543px;
@@ -419,6 +436,7 @@ footer img {
 
   #subscribefield {
     height: 182px;
+    margin-top: -13px;
   }
 
   #subscribefield p {
@@ -438,7 +456,7 @@ footer img {
     margin: auto 168.94px 34px auto;
   }
 
-  #games {
+  #othergames {
     margin-left: 123px;
     margin-right: 119px;
     display: grid;
@@ -454,7 +472,7 @@ footer img {
     display: block;
   }
 
-  #games h1 {
+  #othergames h1 {
     margin: 113.64px auto -7.86px auto;
   }
   #underline {
@@ -465,22 +483,30 @@ footer img {
     margin: auto 400.55px 133.07px 449.55px;
   }
 
-  footer img {
-    width: 15%;
-    margin-left: 30px;
+  footer {
+    height: 250px;
   }
 
-  #table p {
-    font-size: 16px;
+  footer img {
+    width: 15%;
+    margin-left: 39px;
+    margin-top: 30px;
+  }
+
+  #table {
+    margin-left: 12px;
   }
 
   .column {
     padding: 15px 35px 35px 35px;
+    width: 250px;
+    font-size: 16px;
   }
 
-  .column button {
+  .column #customerservice {
     height: 39px;
     width: 210.07px;
     font-size: 16px;
+    padding: 11.13px 59.54px 9.74px 58.45px;
   }
 }
