@@ -15,6 +15,10 @@ const greetingUserEl = document.getElementById("userName");
 
 
 let openedModalId;
+let loginDayNum;
+let date = new Date();
+let today = date.getDate();
+
 
 let user = {
 	username: "",
@@ -28,15 +32,12 @@ let user = {
 
 window.addEventListener('DOMContentLoaded', init());
 
-function init(params) {
+function init() {
 	// Event listeners
 	formEl.addEventListener("submit", onSignup);
 	formSignInEl.addEventListener("submit", onSignin);
 	logoutButtonEl.addEventListener("click", onLogout);
 	formSubscribeEl.addEventListener("submit", subscribe);
-	
-	
-	
 
 }
 
@@ -65,11 +66,14 @@ function welcomeUser(user) {
 		} else {
 			console.log(user);
 			
-			document.getElementById('modalWelcomeNewTitle').innerHTML = `Welcome back to Casino, ${user.username}!`
-			document.getElementById('welcomeText').innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
-			$('#modalWelcomeNew').modal('show');
-			user.spins = user.spins + 10;
-			
+			if (lastLogin !== today) {
+				console.log("last signin not today -- Get a gift");
+				
+				document.getElementById('modalWelcomeNewTitle').innerHTML = `Welcome back to Casino, ${user.username}!`
+				document.getElementById('welcomeText').innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
+				$('#modalWelcomeNew').modal('show');
+				user.spins = user.spins + 10;
+			}
 		}
 	}, 1000);
 }
@@ -137,25 +141,22 @@ function onLogout() {
 	logout();
 	greetingUserEl.textContent = "";
 	document.getElementById('greetingUser').style.display = "none";
-
-
 }
-
 
 //  USER AUTHENTICATION LISTENER
 //  This is a listener created from firebase.
 //  It runs automatically on user login or logout
-
 firebase.auth().onAuthStateChanged(userAuth => {
   if (userAuth) {
 	// We get here if:
 	// - User navigated to the site and is logged in (remembers him)
+	lastLogin = Number(userAuth.metadata.lastSignInTime.toString().slice(5, 7));
 	// In case it's a new sign-up, we need to prepare what info we want to save in the DB
 	const additionalInformation = {
 		username: user.username,
 		email: user.email,
 		spins: user.spins,
-		score: user.score
+		score: user.score,
 	};
 	// This function creates a new user document in the DB if it doesn't exist
 	// or finds and returns the existing user document.
