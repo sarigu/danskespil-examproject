@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Fontdiner+Swanky&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
-
+/* I've reset bootstrap's box-sizing due to conflict with the game  */
+*,
+::after,
+::before {
+  box-sizing: initial;
+}
 /* GENERAL */
 body {
   width: 100vw;
@@ -149,7 +154,7 @@ button.navbar-toggler:focus {
   margin-left: auto;
   margin-right: auto;
 }
-img {
+.navbar img {
   width: 200px;
 }
 .warning {
@@ -218,6 +223,12 @@ img {
   }
 }
 /*under18 end*/
+#game {
+  background-image: url(../img/slots/background.jpg);
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 
 /* //// Layout /////*/
 
@@ -227,7 +238,6 @@ img {
   width: 90vw;
   height: 100vh;
   border-radius: 1px 1px 1px 1px;
-  background-color: #2c4b62;
   margin: auto;
 }
 
@@ -287,7 +297,7 @@ img {
     "cinderellasBall holyDiver";
 }
 
-img {
+#othergames img {
   width: 170px;
   border-radius: 5px;
 }
@@ -430,7 +440,7 @@ footer img {
   #brainSpin {
     width: 1014.93px;
     height: 543px;
-    box-shadow: 0px 0px 6px #00000058;
+    /* box-shadow: 0px 0px 6px #00000058; */
     margin: 35px auto 57px auto;
   }
 
@@ -509,4 +519,341 @@ footer img {
     font-size: 16px;
     padding: 11.13px 59.54px 9.74px 58.45px;
   }
+}
+
+/* The GAME STARTS HERE */
+
+.jSlots-wrapper {
+  overflow: hidden;
+  height: 20px;
+}
+
+.slot {
+  float: left;
+}
+/* first slot line */
+.firstSlot {
+  background-color: #021f2e;
+}
+/* second slot line */
+
+.secondSlot {
+  background-color: #2c4b62;
+}
+/* third slot line */
+
+.thirdSlot {
+  background-color: #021f2e;
+}
+/* images limits !important DO NOT CHANGE! */
+
+.zombie {
+  max-height: 100px;
+  max-width: 100px;
+}
+/* don't try to understand this,this .jSlots-wrapper is created by library */
+
+.fancy .jSlots-wrapper {
+  overflow: hidden;
+  height: 100px;
+  display: block;
+  max-width: 500px;
+}
+/*  !important DO NOT CHANGE! */
+
+.fancy .slot li {
+  height: 100px;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fancy .slot li img {
+  max-width: 80px;
+  max-height: 80px;
+}
+
+.fancy .slot li span {
+  display: block;
+}
+.playFancy {
+  font-size: 25px;
+  background: linear-gradient(
+    to bottom,
+    rgba(78, 173, 187, 1) 0%,
+    rgba(37, 68, 91, 1) 100%
+  );
+  color: #fff;
+  border: none;
+  padding: 5px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+  width: 280px;
+  font-family: "Fontdiner Swanky", cursive;
+  letter-spacing: 5px;
+  box-shadow: 0px 10px 5px 0px #021f2e6b;
+  transform: translate(110px, -10px);
+}
+/* .disabled {
+  display: none;
+} */
+
+.fancy {
+  width: 500px;
+  height: 300px;
+  right: 50%;
+  border-radius: 5px;
+  border: 10px solid rgba(255, 255, 255, 0.5);
+  margin-left: 80px;
+  transform: scale(1.2);
+}
+.rightSide {
+  left: 50%;
+  width: 60vh;
+}
+.leftSide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.winningDiv {
+  width: 98%;
+  height: 5vh;
+  font-size: 25px;
+  font-family: "Fontdiner Swanky", cursive;
+  color: #fff;
+  padding: 5px 0px;
+  margin: 4px 2px;
+  border-radius: 5px;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
+.rightSideInner {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+.wordWin,
+.wordSpins,
+.wordScore {
+  transform: translate(10px, 5px);
+}
+.playerScore {
+  padding: 5px;
+  text-align: right;
+}
+.fullGame {
+  border: 10px solid #2c4b62;
+  border-radius: 5px;
+  width: 100%;
+  transform: scale(0.9) translate(-180px, -50px);
+}
+
+.theGame {
+  background: url("/src/img/background.jpg");
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5vw;
+}
+.contentWrapper {
+  border: 1px solid black;
+}
+.topPlayers,
+.combos {
+  font-size: 25px;
+  background: #7790a4;
+  font-family: "Fontdiner Swanky", cursive;
+  color: #fff;
+  border: none;
+  padding: 5px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  /* margin: 5px 4px; */
+  cursor: pointer;
+  border-radius: 5px;
+  max-width: 200vw;
+  box-shadow: 0px 5px 5px 0px #021f2e6b;
+}
+.topPlayers {
+  background-color: #2c4b62;
+}
+.topPlayers:hover,
+.combos:hover {
+  background: #2c4b62;
+}
+
+.topList {
+  background: rgba(255, 255, 255, 0.288);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-radius: 5px;
+  width: 100%;
+}
+.playerName {
+  padding: 5px;
+  text-align: left;
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
+}
+.scoreAmount {
+  text-align: right;
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
+}
+.dots {
+  font-size: 55px;
+  font-family: "Fontdiner Swanky", cursive;
+  color: #fff;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 15px;
+}
+
+.tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+}
+.ourPlayer {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "gameHeader gameHeader gameHeader gameHeader"
+    "theGame"
+    "theGame"
+    "theGame"
+    "theGame";
+  width: 95%;
+  margin: 0 auto;
+}
+
+.gameHeader {
+  grid-area: gameHeader;
+  height: 10vh;
+  background-color: #2c4b62;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "spinAmount gameLogo ourScore";
+}
+
+.theGame {
+  grid-area: theGame;
+}
+.spinAmount {
+  grid-area: spinAmount;
+  width: 20vw;
+  height: 5vh;
+  font-size: 25px;
+  font-family: "Fontdiner Swanky", cursive;
+  color: #fff;
+  margin: 4px 2px;
+  border-radius: 5px;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.gameLogo {
+  grid-area: gameLogo;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.gameLogo img {
+  max-height: 80px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  padding: 3px;
+  box-shadow: 0px 10px 5px 0px #021f2e6b;
+}
+.headerWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ourScore {
+  grid-area: ourScore;
+  width: 20vw;
+  height: 5vh;
+  font-size: 25px;
+  font-family: "Fontdiner Swanky", cursive;
+  color: #fff;
+  margin: 4px 2px;
+  border-radius: 5px;
+  border: 5px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.3);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media (min-width: 481px) and (max-width: 1287px) {
+  .theGame {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "leftSide" "rightSide";
+    height: 100%;
+  }
+
+  .leftSide {
+    grid-area: leftSide;
+    margin: 0 auto;
+  }
+  .rightSide {
+    grid-area: rightSide;
+    margin: 0 auto;
+  }
+  .fancy {
+    transform: scale(1);
+    margin: 0 auto;
+  }
+}
+@media (min-width: 0px) and (max-width: 481px) {
+  .theGame {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "leftSide" "rightSide";
+    height: 100%;
+  }
+
+  .leftSide {
+    grid-area: leftSide;
+    margin: 0 auto;
+  }
+  .rightSide {
+    grid-area: rightSide;
+    margin: 0 auto;
+    transform: scale(0.9);
+  }
+  .fancy {
+    transform: scale(0.9);
+    margin: 0 auto;
+  }
+}
+ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+ol {
+  margin: 0;
 }
