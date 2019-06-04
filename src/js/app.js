@@ -11,6 +11,7 @@ const passwordInputEl = document.getElementById("exampleInputPassword1");
 const logoutButtonEl = document.getElementById("logout");
 const loginButtonEl = document.getElementById("btn-login");
 const greetingUserEl = document.getElementById("userName");
+const btnSpin = document.getElementById("btnSpin");
 
 let openedModalId;
 let loginDayNum;
@@ -34,11 +35,49 @@ function init() {
   formSignInEl.addEventListener("submit", onSignin);
   logoutButtonEl.addEventListener("click", onLogout);
   formSubscribeEl.addEventListener("submit", subscribe);
+  btnSpin.addEventListener("click", fakeSpinForModalsTesting);
+
 }
+
+
 
 // UTILITIES
 
-// Modals
+// Fake gameplay
+function fakeSpinForModalsTesting(params) {
+	console.log("spin clicked");
+
+	// TODO: Add new score to the local user here
+	
+	// Spins left?
+	if (user.spins > 0) {
+		// Remove 1 spin
+		user.spins = user.spins - 1;
+		console.log("Spins left: ", user.spins);
+	} else {
+		// Is user logged in?
+		if (user.name === "" || user.name === "guest") {
+			// User is NOT logged in. Has he subscribed already?
+			if (user.email === "") {
+				// No. Ask to subscribe (subscribe modal)
+				subscribeModal();
+			} else {
+				// Yes. Ask to sign up (signup midal)
+				// TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
+			}
+		} else {
+			// Notify: Oh shoot, you have no more spins, here are your options:....
+			// TODO: Make the modal and call it here
+		}
+	}
+
+
+	
+	
+	
+}
+
+// Modals general
 function setOpenedModal(modalId) {
   openedModalId = modalId;
 }
@@ -58,17 +97,13 @@ function welcomeUser(user) {
 
       console.log("welcome: ", user);
     } else {
-      console.log(user);
+      console.log("User online: ", user);
 
       if (lastLogin !== today) {
-        console.log("last signin not today -- Get a gift");
+        console.log("last signin: not today -- Get a gift! ", "Last login: ", lastLogin, "Today: ", today);
 
-        document.getElementById(
-          "modalWelcomeNewTitle"
-        ).innerHTML = `Welcome back to Casino, ${user.username}!`;
-        document.getElementById(
-          "welcomeText"
-        ).innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
+        document.getElementById("modalWelcomeNewTitle").innerHTML = `Welcome back to Casino, ${user.username}!`;
+        document.getElementById("welcomeText").innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
         $("#modalWelcomeNew").modal("show");
         user.spins = user.spins + 10;
       }
@@ -76,6 +111,8 @@ function welcomeUser(user) {
   }, 1000);
 }
 
+// SUBSCRIBE
+// Subscribe section
 function subscribe(e) {
   e.preventDefault();
 
@@ -88,6 +125,15 @@ function subscribe(e) {
   }
   console.log(user);
 }
+
+// Subscribe modal
+function subscribeModal(params) {
+	console.log("Subscribe modal func.");
+
+	
+	
+}
+
 
 // SIGN-UP METHOD
 
