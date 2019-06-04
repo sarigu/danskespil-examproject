@@ -81,7 +81,7 @@
                       <div class="headerWrapper">
                         <div class="spinAmount">
                           <span class="wordSpins">Spins:</span>
-                          <span class="playerScore">3</span>
+                          <span class="playerScore" id=spinAmount>3</span>
                         </div>
                       </div>
                         <div class="gameLogo">
@@ -92,7 +92,7 @@
                           <div class="headerWrapper">
                         <div class="ourScore">
                           <span class="wordScore">Score:</span>
-                          <span class="playerScore">0</span>
+                          <span class="playerScore" id="PlayerScore">0</span>
                         </div>
                       </div>
                     </div>
@@ -149,7 +149,7 @@
                       <div class="winningDiv">
                         <span class="wordWin">WIN</span>
                         
-                        <span class="playerScore">0</span>
+                        <span class="playerScore" id="winScore">0</span>
                       </div>
                       <div class="tabs">
                           <div class="topPlayers" onclick="openPage('topPlayers', this, )" id="defaultOpen">Top Players</div>
@@ -503,20 +503,27 @@
         //when button "spin" is pressed this happens
         onStart: function() {
           $(".playFancy").addClass("disabled");
+          let winAmount=document.querySelector("#winScore").innerText;
+              document.querySelector("#winScore").innerText=0;
         },
         onEnd: function() {
-          $(".playFancy").removeClass("disabled");
+           $(".playFancy").removeClass("disabled")
         },
 
         //when user gets brain this function starts
         onWin: function(winCount, winners) {
           // react to the # of winning slots
-          if (winCount === 1) {
-            console.log("You got " + "50 points for " + winCount + " brain!!!");
+          if (winCount > 0) {
+            console.log("You got " + winCount +" brains");
+              let winAmount=document.querySelector("#PlayerScore").innerText;
+              // console.log(Number(winAmount));
+              document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
+              document.querySelector("#winScore").innerText="Brain Combo: "+ winCount;
+
           }
         }
       });
-
+      
   //Tabs for top players and combos
   function openPage(pageName,elmnt,color) {
   let i, tabcontent, tabs;

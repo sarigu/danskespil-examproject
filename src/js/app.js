@@ -36,45 +36,46 @@ function init() {
   logoutButtonEl.addEventListener("click", onLogout);
   formSubscribeEl.addEventListener("submit", subscribe);
   btnSpin.addEventListener("click", fakeSpinForModalsTesting);
-
 }
-
-
 
 // UTILITIES
 
 // Fake gameplay
 function fakeSpinForModalsTesting(params) {
-	console.log("spin clicked");
+  console.log("spin clicked");
 
-	// TODO: Add new score to the local user here
-	
-	// Spins left?
-	if (user.spins > 0) {
-		// Remove 1 spin
-		user.spins = user.spins - 1;
-		console.log("Spins left: ", user.spins);
-	} else {
-		// Is user logged in?
-		if (user.name === "" || user.name === "guest") {
-			// User is NOT logged in. Has he subscribed already?
-			if (user.email === "") {
-				// No. Ask to subscribe (subscribe modal)
-				subscribeModal();
-			} else {
-				// Yes. Ask to sign up (signup midal)
-				// TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
-			}
-		} else {
-			// Notify: Oh shoot, you have no more spins, here are your options:....
-			// TODO: Make the modal and call it here
-		}
-	}
+  // TODO: Add new score to the local user here
 
+  // Spins left?
 
-	
-	
-	
+  if (user.spins > 0) {
+    // Remove 1 spin
+    user.spins = user.spins - 1;
+    console.log("Spins left: ", user.spins);
+    let spin = document.querySelector(".playerScore");
+    spin.innerHTML = user.spins;
+  } else {
+    // Is user logged in?
+    if (user.name === "" || user.name === "guest") {
+      // User is NOT logged in. Has he subscribed already?
+      if (user.email === "") {
+        // No. Ask to subscribe (subscribe modal)
+
+        subscribeModal();
+      } else {
+        // Yes. Ask to sign up (signup midal)
+        // TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
+      }
+    } else {
+      if ((user.spins = 1)) {
+        let button = document.getElementById("btnSpin");
+        button.classList.remove("playFancy");
+        button.classList.add("disabled");
+      }
+      // Notify: Oh shoot, you have no more spins, here are your options:....
+      // TODO: Make the modal and call it here
+    }
+  }
 }
 
 // Modals general
@@ -100,10 +101,20 @@ function welcomeUser(user) {
       console.log("User online: ", user);
 
       if (lastLogin !== today) {
-        console.log("last signin: not today -- Get a gift! ", "Last login: ", lastLogin, "Today: ", today);
+        console.log(
+          "last signin: not today -- Get a gift! ",
+          "Last login: ",
+          lastLogin,
+          "Today: ",
+          today
+        );
 
-        document.getElementById("modalWelcomeNewTitle").innerHTML = `Welcome back to Casino, ${user.username}!`;
-        document.getElementById("welcomeText").innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
+        document.getElementById(
+          "modalWelcomeNewTitle"
+        ).innerHTML = `Welcome back to Casino, ${user.username}!`;
+        document.getElementById(
+          "welcomeText"
+        ).innerHTML = `Here is a welcome back 🎁<br>take 10 free spins to play the BRAIN SPIN game!<br>Good luck!`;
         $("#modalWelcomeNew").modal("show");
         user.spins = user.spins + 10;
       }
@@ -128,12 +139,8 @@ function subscribe(e) {
 
 // Subscribe modal
 function subscribeModal(params) {
-	console.log("Subscribe modal func.");
-
-
-	
+  console.log("Subscribe modal func.");
 }
-
 
 // SIGN-UP METHOD
 
@@ -189,7 +196,7 @@ function onLogout() {
 //  It runs automatically on user login or logout
 firebase.auth().onAuthStateChanged(userAuth => {
   if (userAuth) {
-	  console.log(userAuth);
+    console.log(userAuth);
     // We get here if:
     // - User navigated to the site and is logged in (remembers him)
     lastLogin = Number(userAuth.metadata.lastSignInTime.toString().slice(5, 7));
@@ -198,11 +205,11 @@ firebase.auth().onAuthStateChanged(userAuth => {
       username: user.username,
       email: user.email,
       spins: user.spins,
-	  score: user.score,
-	};
+      score: user.score
+    };
 
-	// Update lastLogin on user in db
-	// updateUser();
+    // Update lastLogin on user in db
+    // updateUser();
 
     // This function creates a new user document in the DB if it doesn't exist
     // or finds and returns the existing user document.
