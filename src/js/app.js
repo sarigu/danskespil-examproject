@@ -130,7 +130,7 @@ function subscribe(e) {
 function subscribeModal(params) {
 	console.log("Subscribe modal func.");
 
-	
+
 	
 }
 
@@ -189,6 +189,7 @@ function onLogout() {
 //  It runs automatically on user login or logout
 firebase.auth().onAuthStateChanged(userAuth => {
   if (userAuth) {
+	  console.log(userAuth);
     // We get here if:
     // - User navigated to the site and is logged in (remembers him)
     lastLogin = Number(userAuth.metadata.lastSignInTime.toString().slice(5, 7));
@@ -197,8 +198,12 @@ firebase.auth().onAuthStateChanged(userAuth => {
       username: user.username,
       email: user.email,
       spins: user.spins,
-      score: user.score
-    };
+	  score: user.score,
+	};
+
+	// Update lastLogin on user in db
+	// updateUser();
+
     // This function creates a new user document in the DB if it doesn't exist
     // or finds and returns the existing user document.
     // Either way, we get back the user document.
