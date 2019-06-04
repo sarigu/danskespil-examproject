@@ -154,10 +154,10 @@
                         <span class="playerScore">0</span>
                       </div>
                       <div class="tabs">
-                        <div class="topPlayers">Top Players</div>
-                        <div class="combos">Combos</div>
+                          <div class="topPlayers" onclick="openPage('topPlayers', this, )" id="defaultOpen">Top Players</div>
+                          <button class="combos" onclick="openPage('brainCombos', this, )" >Combos</button>
                       </div>
-              
+                      <div id="topPlayers" class="tabcontent">
                       <div class="topList">
                         <div class="nickname">
                           <ol>
@@ -187,6 +187,12 @@
                             <li class="playerScore">9 936</li>
                             <li class="playerScore ourPlayer">Unlimited</li>
                           </ul>
+                        </div>
+                    </div>
+                    </div>
+                    <div id="brainCombos" class="tabcontent">
+                        <div class="brainCombosDiv">
+                          <img src="/src/img/spinCombos.png" alt="">
                         </div>
                     </div>
                   </div>
@@ -512,6 +518,24 @@
           }
         }
       });
+
+  //Tabs for top players and combos
+  function openPage(pageName,elmnt,color) {
+  let i, tabcontent, tabs;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tabs = document.getElementsByClassName("tabs");
+  for (i = 0; i < tabs.length; i++) {
+    tabs[i].style.backgroundColor = "";
+  }
+  document.getElementById(pageName).style.display = "block";
+  elmnt.style.backgroundColor = color;
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
     </script>
 
     <!-- The core Firebase JS SDK is always required and must be listed first -->
