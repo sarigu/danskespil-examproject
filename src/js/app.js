@@ -57,20 +57,21 @@ function init() {
     } else {
       $("#modalSubscribe").modal("show");
     }
+    playIntro();
   });
-  let introSound = document.getElementById("myAudioIntro");
-  introSound.volume = 0.35;
-  introSound.play();
-}
 
-// UTILITIES
-function subscribeGuest(e) {
-  e.preventDefault();
-
-  user.email = emailInputModalEl.value;
-  user.spins = user.spins + 10;
-
-  console.log(user);
+  // UTILITIES
+  function subscribeGuest(e) {
+    e.preventDefault();
+    user.email = emailInputModalEl.value;
+    user.spins = user.spins + 10;
+    console.log(user);
+  }
+  function playIntro() {
+    let introSound = document.getElementById("myAudioIntro");
+    introSound.volume = 0.35;
+    introSound.play();
+  }
 }
 
 // Gameplay
@@ -80,17 +81,19 @@ function spin() {
   // TODO: Add new score to the local user here
 
   // Spins left?
-  if (user.spins > 0) {
+  if (user.spins > 1) {
     // Remove 1 spin
     user.spins = user.spins - 1;
     console.log("Spins left: ", user.spins);
     let spin = document.querySelector(".playerScore");
+    let score = document.querySelector("#PlayerScore");
+    user.score = user.score + Number(score.innerText);
     spin.innerHTML = user.spins;
+    // console.log(user);
   } else {
     // Is user logged in?
     if (!user.name) {
       console.log("user not logged in");
-
       // User is NOT logged in. Has he subscribed already?
       if (!user.email) {
         // No. Ask to subscribe (subscribe modal)
@@ -107,7 +110,6 @@ function spin() {
     }
   }
 }
-
 // Modals
 function setOpenedModal(modalId) {
   openedModalId = modalId;
@@ -124,7 +126,7 @@ function welcomeUser(user) {
     if (!user.username && !isModalWelcomeNewSeen) {
       isModalWelcomeNewSeen = true;
       $("#modalWelcomeNew").modal("show");
-      user.spins = 2; // TODO: change this to 5 or 3 for production
+      user.spins = 5; // TODO: change this to 5 or 3 for production
 
       console.log("welcome: ", user);
     } else if (user.email) {

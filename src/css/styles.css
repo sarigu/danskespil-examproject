@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Fontdiner+Swanky&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
 /* I've reset bootstrap's box-sizing due to conflict with the game  */
-*,
+#game *,
 ::after,
 ::before {
   box-sizing: initial;
@@ -660,7 +660,7 @@ footer img {
 }
 
 .theGame {
-  background: url("/src/img/background.jpg");
+  background: url("../img/background.jpg");
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5vw;
