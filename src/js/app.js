@@ -1,25 +1,28 @@
 // HTML ELEMENTS
-// Forms
+// Forms & Modals
 const formEl = document.getElementById("form-popup-signup");
 const formSignInEl = document.getElementById("form-popup-signin");
 const formSubscribeEl = document.getElementById("subscribebox");
 const formSubscribeModEl = document.getElementById("modalSubscribe");
+const formSignupModal = document.getElementById("form-signup");
+const signUp2Modal = document.getElementById("signUp2Modal");
 // Imputs
 const usernameEl = document.getElementById("exampleInputUsername");
+const usernameModalEl = document.getElementById("inputUsername");
 const emailInputEl = document.getElementById("exampleInputEmail1");
 const emailInputSignInEl = document.getElementById("inputEmail1");
 const emailInputModalEl = document.getElementById("inputEmail");
+const emailInputModalSignUpEl = document.getElementById("inputEmail2");
 const passwordInputSignInEl = document.getElementById("inputPassword1");
 const passwordInputEl = document.getElementById("exampleInputPassword1");
+const passwordInputModalEl = document.getElementById("inputPassword2");
 // Buttons
 const logoutButtonEl = document.getElementById("logout");
 const loginButtonEl = document.getElementById("btn-login");
 const btnSpin = document.getElementById("btnSpin");
 const btnSubscribeModal = document.getElementById("btnSubscribeModal");
-const btnCancelSubscribeModal = document.getElementById(
-  "btnCancelSubscribeModal"
-);
-
+const btnCancelSubscribeModal = document.getElementById("btnCancelSubscribeModal");
+const closeSignupModal2 = document.getElementById("closeSignupModal2");
 // DOM other elements
 const greetingUserEl = document.getElementById("userName");
 // Help variables
@@ -58,6 +61,21 @@ function init() {
       $("#modalSubscribe").modal("show");
     }
   });
+
+// DOING .....
+	formSignupModal.addEventListener("submit", onSignupGuest);
+	closeSignupModal2.addEventListener("click", () => {
+		const response = window.confirm(
+			"You are about to lose free spins and the chance to play more for free! Are you sure?"
+		);
+		if (response) {
+			$("#signUp2Modal").modal("hide");
+		} else {
+			$("#signUp2Modal").modal("show");			
+		}
+	});
+// ........
+
   let introSound = document.getElementById("myAudioIntro");
   introSound.volume = 0.35;
   introSound.play();
@@ -75,15 +93,15 @@ function subscribeGuest(e) {
 
 // Gameplay
 function spin() {
-  console.log("spin clicked");
+	  console.log("spin clicked");
+// Remove 1 spin
+	user.spins = user.spins - 1;
+	console.log("Spins left: ", user.spins);
 
   // TODO: Add new score to the local user here
 
   // Spins left?
-  if (user.spins > 0) {
-    // Remove 1 spin
-    user.spins = user.spins - 1;
-    console.log("Spins left: ", user.spins);
+  if (user.spins > 1) {
     let spin = document.querySelector(".playerScore");
     spin.innerHTML = user.spins;
   } else {
@@ -93,11 +111,13 @@ function spin() {
 
       // User is NOT logged in. Has he subscribed already?
       if (!user.email) {
-        // No. Ask to subscribe (subscribe modal)
-        subscribeModalOpen();
+		// No. Ask to subscribe (subscribe modal)
+		  setTimeout(() => { subscribeModalOpen() }, 3000);
+        
       } else {
-        // Yes, subscribed. Ask to sign up (signup modal)
-        // TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
+		// Yes, subscribed. Ask to sign up (signup modal)
+		  setTimeout(() => { SignUpModal2Open() }, 3000);
+		  
       }
     } else {
       // User is logged in
@@ -124,7 +144,7 @@ function welcomeUser(user) {
     if (!user.username && !isModalWelcomeNewSeen) {
       isModalWelcomeNewSeen = true;
       $("#modalWelcomeNew").modal("show");
-      user.spins = 2; // TODO: change this to 5 or 3 for production
+      user.spins = 2; // TODO: change this to 5 or 2 for production
 
       console.log("welcome: ", user);
     } else if (user.email) {
@@ -143,15 +163,22 @@ function welcomeUser(user) {
         ).innerHTML = `Welcome back to Casino, ${user.username}!`;
         document.getElementById(
           "welcomeText"
-        ).innerHTML = `Here is a welcome back 🎁<br>take 15 free spins to play the BRAIN SPIN game!<br>Good luck!`;
+        ).innerHTML = `Here is a welcome back 🎁<br>take 20 free spins to play the BRAIN SPIN game!<br>Good luck!`;
         $("#modalWelcomeNew").modal("show");
-        user.spins = user.spins + 15;
+        user.spins = user.spins + 20;
         user.lastLogin = today;
       }
       user.lastLogin = today;
       updateUser(user.uid, user);
     }
   }, 1000);
+}
+
+function SignUpModal2Open(params) {
+	// TODO: (get +10 now)
+	setOpenedModal("#signUp2Modal");
+	emailInputModalSignUpEl.value = user.email;
+	$("#signUp2Modal").modal("show");
 }
 
 function subscribeModalOpen() {
@@ -179,8 +206,6 @@ function subscribeModal(params) {
 
 // SIGN-UP METHOD
 function onSignup(e) {
-  console.log(e);
-
   e.preventDefault();
 
   user.username = usernameEl.value;
@@ -193,6 +218,21 @@ function onSignup(e) {
       console.log("err: ", err.message);
       window.alert(err.message);
     });
+}
+function onSignupGuest(e) {
+	e.preventDefault();
+
+	user.username = usernameModalEl.value;
+	user.email = emailInputModalSignUpEl.value;
+	user.spins = user.spins + 15;
+	const password = passwordInputModalEl.value;
+
+	signup(user.email, password)
+		.then(res => $("#signUp2Modal").modal("hide"))
+		.catch(err => {
+			console.log("err: ", err.message);
+			window.alert(err.message);
+		});
 }
 
 // SIGN-IN METHOD
@@ -234,7 +274,6 @@ function onLogout() {
 //  It runs automatically on user login or logout
 firebase.auth().onAuthStateChanged(userAuth => {
   if (userAuth) {
-    console.log(userAuth);
     // We get here if:
     // - User navigated to the site and is logged in (remembers him)
     lastLogin = Number(userAuth.metadata.lastSignInTime.toString().slice(5, 7));

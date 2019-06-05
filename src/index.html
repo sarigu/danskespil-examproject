@@ -469,15 +469,62 @@
         </div>
       </div>
     </div>
-        <!-- Modal Ends -->
+    <!-- Modal Ends -->
 
-        <!-- Sounds HTML -->
+    <!-- Sounds HTML -->
     <audio id="myAudioIntro"><source src="/src/sounds/Computer_Start-Up-Your_Mom-1280862923.mp3" type="audio/ogg"></audio>
     <audio id="myAudio"><source src="/src/sounds/rolling.mp3" type="audio/ogg"></audio>
     <audio id="myAudioScore"><source src="/src/sounds/Ta Da-SoundBible.com-1884170640.mp3" type="audio/ogg"></audio>
     <audio id="myAudioLaugh"><source src="/src/sounds/Evil Laugh Male.mp3" type="audio/ogg"></audio>
     <audio id="myAudioButton"><source src="/src/sounds/Electrical_Sweep-Sweeper-1760111493.mp3" type="audio/ogg"></audio>
     <audio id="myAudioRico"><source src="/src/sounds/Western Ricochet.mp3" type="audio/ogg"></audio>
+
+    <!-- Sign Up ( save score ) Modal-->
+    <!-- Modal -->
+    <div class="modal fade" id="signUp2Modal" tabindex="-1" role="dialog" aria-labelledby="signUp2ModalTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="signUp2ModalTitle">
+              Wow! You got a great high score!<br>
+              Sign up or Login to save it!
+            </h5>
+            <button id="closeSignupModal2" type="button" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Sign up to save your score and get 15 extra spins now as well as 20 free spins every day!</p>
+            <form id="form-signup">
+              <div class="form-group">
+                <label for="inputUsername">Username</label>
+                <input type="text" class="form-control" id="inputUsername" placeholder="Enter your username" />
+    
+                <label for="inputEmail2">Email address</label>
+                <input type="email" class="form-control" id="inputEmail2" aria-describedby="emailHelp"
+                  placeholder="Enter email" />
+              </div>
+              <div class="form-group">
+                <label for="inputPassword2">Password</label>
+                <input type="password" class="form-control" id="inputPassword2" placeholder="Password" />
+              </div>
+    
+              <div class="modal-footer">
+                <button onclick="closePreviousModal('#modalSignIn')" type="button"
+                  class="btn btn-outline-secondary btn__base" data-toggle="modal" data-target="#modalSignIn">
+                  Already Have an Account
+                </button>
+                <button type="submit" class="btn btn-primary btn__base btn--pink">
+                  Sign Up Now
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal Ends -->
 
     <!-- Please Subscribe Modal-->
     <!-- Modal -->
