@@ -4,9 +4,10 @@ const formEl = document.getElementById("form-popup-signup");
 const formSignInEl = document.getElementById("form-popup-signin");
 const formSubscribeEl = document.getElementById("subscribebox");
 const formSubscribeModEl = document.getElementById("modalSubscribe");
+const formOutOfSpinsModEl = document.getElementById("modalOutOfSpins");
 const formSignupModal = document.getElementById("form-signup");
 const signUp2Modal = document.getElementById("signUp2Modal");
-// Imputs
+// Inputs
 const usernameEl = document.getElementById("exampleInputUsername");
 const usernameModalEl = document.getElementById("inputUsername");
 const emailInputEl = document.getElementById("exampleInputEmail1");
@@ -24,7 +25,10 @@ const btnSubscribeModal = document.getElementById("btnSubscribeModal");
 const btnCancelSubscribeModal = document.getElementById(
   "btnCancelSubscribeModal"
 );
+const btnCancelOutOfSpinsModal = document.getElementById("btnCancelOutOfSpinsModal");
 const closeSignupModal2 = document.getElementById("closeSignupModal2");
+
+const spinsAmountEl = document.getElementById("spinAmount");
 // DOM other elements
 const greetingUserEl = document.getElementById("userName");
 // Help variables
@@ -64,8 +68,9 @@ function init() {
     }
     playIntro();
   });
-
-  // DOING .....
+  btnCancelOutOfSpinsModal.addEventListener("click", () => {
+	$("#modalOutOfSpins").modal("hide");
+  });
   formSignupModal.addEventListener("submit", onSignupGuest);
   closeSignupModal2.addEventListener("click", () => {
     const response = window.confirm(
@@ -77,7 +82,6 @@ function init() {
       $("#signUp2Modal").modal("show");
     }
   });
-  // ........
 
   let introSound = document.getElementById("myAudioIntro");
   introSound.volume = 0.35;
@@ -90,6 +94,9 @@ function subscribeGuest(e) {
   user.email = emailInputModalEl.value;
   user.spins = user.spins + 10;
 
+  // $(".playFancy").removeClass("disabled");
+  spinsAmountEl.textContent = user.spins;
+
   console.log(user);
 }
 function playIntro() {
@@ -101,6 +108,7 @@ function playIntro() {
 // Gameplay
 function spin() {
   console.log("spin clicked");
+
   // Remove 1 spin
   user.spins = user.spins - 1;
   console.log("Spins left: ", user.spins);
@@ -109,14 +117,14 @@ function spin() {
   spin.innerHTML = user.spins;
 
   // Spins left?
-  if (user.spins > 1) {
+  if (user.spins > 0) {
     // Remove 1 spin
     let score = document.querySelector("#PlayerScore");
     user.score = user.score + Number(score.innerText);
     // console.log(user);
   } else {
-    // Is user logged in?
-    if (!user.name) {
+	// Is user logged in?
+    if (!user.username) {
       console.log("user not logged in");
       // User is NOT logged in. Has he subscribed already?
       if (!user.email) {
@@ -132,11 +140,18 @@ function spin() {
       }
     } else {
       // User is logged in
-      // Notify: Oh shoot, you have no more spins, here are your options:....
-      // TODO: Make the modal and call it here
-      // TODO: Update user in db
+	  // Notify: Oh shoot, you have no more spins, here are your options:....
+	  // TODO: Make the modal and call it here
+		setTimeout(() => {
+			outOfSpinsModalOpen();
+		}, 3000);
     }
   }
+  // Update user if exists
+  if (user.username) {
+  	updateUser(user.uid, user)
+  }
+
 }
 // Modals
 function setOpenedModal(modalId) {
@@ -185,7 +200,6 @@ function welcomeUser(user) {
 }
 
 function SignUpModal2Open(params) {
-  // TODO: (get +10 now)
   setOpenedModal("#signUp2Modal");
   emailInputModalSignUpEl.value = user.email;
   $("#signUp2Modal").modal("show");
@@ -195,6 +209,10 @@ function subscribeModalOpen() {
   $("#modalSubscribe").modal("show");
 }
 
+function outOfSpinsModalOpen() {
+	$("#modalOutOfSpins").modal("show");
+}
+
 // SUBSCRIBE section
 function subscribe(e) {
   e.preventDefault();
@@ -202,7 +220,7 @@ function subscribe(e) {
   let email = formSubscribeEl.querySelector("input").value;
 
   if (!user.email) {
-    user.email = email;
+	user.email = email;
   } else {
     window.alert(`You have already subscribed using this email: ${user.email}`);
   }
