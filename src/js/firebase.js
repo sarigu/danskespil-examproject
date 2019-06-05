@@ -36,8 +36,8 @@ function createUserInDB(user, additionalData) {
 
 		// Get a reference to the place in the database where a user document might exist
 		const userRef = db.doc(`users/${user.uid}`);
-			// Try to fetch the document from that location
-			userRef.get()
+		// Try to fetch the document from that location
+		userRef.get()
 			.then(snapshot => {
 				if (!snapshot.exists) {
 					// User does not exist in the db - create a document for him
@@ -66,5 +66,20 @@ function createUserInDB(user, additionalData) {
 			.catch(err => {
 				reject(err);
 			})
-		});
-	}
+	});
+}
+
+function updateUser(uid, updatedProperties) {
+	var userRef = db.collection("users").doc(uid);
+
+	// Set the "capital" field of the city 'DC'
+	return userRef.update({ ...updatedProperties });
+		// .then(function () {
+		// 	console.log("User successfully updated!");
+		// })
+		// .catch(function (error) {
+		// 	// The document probably doesn't exist.
+		// 	console.error("Error updating document: ", error);
+		// });
+
+}

@@ -6,6 +6,7 @@
 ::before {
   box-sizing: initial;
 }
+
 /* GENERAL */
 body {
   width: 100vw;
@@ -101,7 +102,7 @@ button.navbar-toggler:focus {
     right: 10vw;
   }
 }
-/*indres navbar code end*/
+/*navbar code end*/
 
 /*under18*/
 .under18pagehtml {
@@ -223,8 +224,8 @@ button.navbar-toggler:focus {
   }
 }
 /*under18 end*/
+
 #game {
-  /* background-image: url(../img/slots/background.jpg); */
   background: #021f2e;
   width: 100%;
   background-repeat: no-repeat;
