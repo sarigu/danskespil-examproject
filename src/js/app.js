@@ -165,10 +165,8 @@ function onSignup(e) {
 
 function onSignin(e) {
   e.preventDefault();
-
   user.email = emailInputSignInEl.value;
   const password = passwordInputSignInEl.value;
-
   signin(user.email, password)
     .then(res => {
       console.log("res: ", res);
