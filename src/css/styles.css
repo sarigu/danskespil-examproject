@@ -226,9 +226,8 @@ button.navbar-toggler:focus {
 /*under18 end*/
 
 #game {
-  background: #021f2e;
+  background: #fffdf4;
   width: 100%;
-  background-repeat: no-repeat;
   background-size: 100%;
 }
 
@@ -241,6 +240,34 @@ button.navbar-toggler:focus {
   height: 100vh;
   border-radius: 1px 1px 1px 1px;
   margin: auto;
+}
+
+#rabbit_desk,
+#joker_desk {
+  display: none;
+}
+
+/*Social media field*/
+
+#socialmedia {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+#socialmedia p {
+  display: block;
+}
+
+#facebookicon {
+  font-size: 50px;
+  color: #3b5998;
+  margin-right: 10px;
+}
+
+#twittericon {
+  font-size: 50px;
+  color: #1da1f2;
 }
 
 /* Field to subscribe */
@@ -265,7 +292,7 @@ button.navbar-toggler:focus {
   grid-area: "email";
   color: #2f0303;
   font-size: 16px;
-  width: 185.82px;
+  width: 180px;
   height: 40px;
   background-color: rgba(255, 255, 255, 0.78);
   border: none;
@@ -278,7 +305,7 @@ button.navbar-toggler:focus {
   grid-area: "btn";
   color: white;
   height: 39px;
-  width: 186.07px;
+  width: 180px;
   border: none;
   border-radius: 5px 5px 5px 5px;
   font-size: 18px;
@@ -288,55 +315,53 @@ button.navbar-toggler:focus {
 /* Section of games */
 
 #othergames {
-  margin: auto 26px 30px 27px;
-  padding-bottom: 2em;
-  display: grid;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    "heading heading" "underline underline" "arcadeBomb blackKnight" "cashVandal ecuadorGold" "crazyGenie grandWheel"
-    "cinderellasBall holyDiver";
+  display: flex;
+  flex-direction: column;
 }
 
-#othergames img {
-  width: 170px;
+#imagecontainer {
+  margin: auto 10% 30px 15%;
+  padding-bottom: 2em;
+  display: grid;
+  grid-row-gap: 20px;
+  grid-column-gap: 5px;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+}
+
+#imagecontainer img {
+  max-width: 110px;
   border-radius: 5px;
 }
 
 #othergames h1 {
-  grid-area: heading;
   color: #2e0202;
   font-size: 28px;
   width: 226px;
-  margin: 63.63px auto -7.86px auto;
+  margin: 63.63px auto 27.86px auto;
   text-align: center;
 }
+
 #underline {
   grid-area: underline;
   background-color: #2e0202;
   height: 2px;
   width: 139px;
-  margin: auto auto 30px auto;
+  margin: auto auto 70px auto;
 }
 
 #arcadeBomb {
-  grid-area: arcadeBomb;
   box-shadow: 0px 3px 6px #8deff9;
 }
 
 #blackKnight {
-  grid-area: blackKnight;
   box-shadow: 0px 3px 6px #a61e6c;
 }
 
 #cashVandal {
-  grid-area: cashVandal;
   box-shadow: 0px 3px 6px #0000007c;
 }
 
 #ecuadorGold {
-  grid-area: ecuadorGold;
   box-shadow: 0px 3px 6px #fae596;
 }
 
@@ -346,29 +371,24 @@ button.navbar-toggler:focus {
 }
 
 #grandWheel {
-  grid-area: grandWheel;
   box-shadow: 0px 3px 6px #a61e6c;
 }
 
 #cinderellasBall {
-  grid-area: cinderellasBall;
   box-shadow: 0px 3px 6px #1b147b;
 }
 
 #holyDiver {
-  grid-area: holyDiver;
   box-shadow: 0px 3px 6px #141c27;
 }
 
 #chi {
   display: none;
-  grid-area: chi;
   box-shadow: 0px 3px 6px pink;
 }
 
 #irishFrenzy {
   display: none;
-  grid-area: irishFrenzy;
   box-shadow: 0px 3px 6px lightgreen;
 }
 
@@ -377,14 +397,14 @@ button.navbar-toggler:focus {
 #casinolink {
   background-color: #a78a52;
   color: white;
-  font-size: 18px;
-  width: 365.91px;
+  font-size: 14px;
+
   height: 44.87px;
   border-radius: 5px;
   box-shadow: 0px 3px 6px #00000016;
   text-decoration: none;
-  padding: 11.13px 59.54px 9.74px 58.45px;
-  margin: auto 14.55px auto 30.55px;
+  padding: 11.13px 19.54px 9.74px 18.45px;
+  margin: auto;
 }
 
 /* Footer */
@@ -394,11 +414,11 @@ footer {
   background-color: #a78a52;
   color: white;
   padding: 10x;
-  height: 150px;
+  height: 190px;
 }
 
 footer img {
-  width: 30%;
+  max-width: 30%;
   margin: 15px auto 15px 8px;
 }
 
@@ -409,6 +429,10 @@ footer img {
 #table a {
   color: white;
   text-decoration: none;
+}
+
+#table a:hover {
+  color: #2e0202;
 }
 
 .column {
@@ -428,12 +452,73 @@ footer img {
   text-decoration: none;
 }
 
-@media only screen and (min-width: 900px) {
+.column #customerservice:hover {
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  #subscribefield p {
+    width: 463px;
+    margin: 58px -10px 57px 100px;
+  }
+
+  #imagecontainer {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+  }
+
+  #imagecontainer img {
+    max-width: 170px;
+    border-radius: 5px;
+  }
+
+  /* Footer */
+
+  footer img {
+    max-width: 20%;
+    margin: 15px auto 15px 6px;
+  }
+
+  .column {
+    width: 160px;
+    font-size: 13px;
+  }
+
+  .column #customerservice {
+    font-size: 13px;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 920px) {
+  #subscribebox input {
+    width: 290px;
+  }
+
+  #subscribebox button {
+    width: 290px;
+  }
+  /* Footer */
+
+  footer {
+    height: 210px;
+  }
+
+  .column {
+    width: 180px;
+    font-size: 14px;
+  }
+
+  .column #customerservice {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
   #game {
-    /* background-image: url(../img/slots/background.jpg); */
     background: #021f2e;
     height: 100%;
-    background-repeat: no-repeat;
+    background: url(../img/slots/background.jpg) no-repeat center center;
+    background-size: cover;
   }
 
   .intro {
@@ -447,6 +532,49 @@ footer img {
     margin: 35px auto 57px auto;
   }
 
+  #rabbit_desk,
+  #joker_desk {
+    display: block;
+  }
+
+  #rabbit_desk {
+    width: 10%;
+    position: absolute;
+    top: 580px;
+    left: 2%;
+  }
+
+  #joker_desk {
+    width: 15%;
+    position: absolute;
+    top: 480px;
+    left: 72%;
+  }
+
+  #socialmedia {
+    background-color: rgba(255, 255, 255, 0.432);
+    position: absolute;
+    top: 40%;
+    left: 0;
+  }
+
+  #socialmedia p {
+    display: none;
+  }
+
+  #socialmediaIcons {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #facebookicon {
+    font-size: 70px;
+  }
+
+  #twittericon {
+    font-size: 70px;
+  }
+
   #subscribefield {
     height: 182px;
     margin-top: -13px;
@@ -458,7 +586,7 @@ footer img {
   }
 
   #subscribebox input {
-    width: 436.06px;
+    width: 441.6px;
     height: 40px;
     margin: 58px 168.94px 8.87px auto;
   }
@@ -469,12 +597,9 @@ footer img {
     margin: auto 168.94px 34px auto;
   }
 
-  #othergames {
+  #imagecontainer {
     margin-left: 123px;
     margin-right: 119px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-areas: "heading heading heading heading heading" "underline underline underline underline underline" "arcadeBomb blackKnight cashVandal ecuadorGold crazyGenie" "grandWheel cinderellasBall holyDiver chi irishFrenzy";
   }
 
   #chi {
@@ -486,14 +611,10 @@ footer img {
   }
 
   #othergames h1 {
-    margin: 113.64px auto -7.86px auto;
+    margin: 113.64px auto 17.86px auto;
   }
   #underline {
     margin: auto auto 80.64px auto;
-  }
-
-  #casinolink {
-    margin: auto 400.55px 133.07px 449.55px;
   }
 
   footer {
@@ -501,7 +622,7 @@ footer img {
   }
 
   footer img {
-    width: 15%;
+    max-width: 15%;
     margin-left: 39px;
     margin-top: 30px;
   }
@@ -712,6 +833,65 @@ footer img {
   font-family: "Fontdiner Swanky", cursive;
   color: white;
 }
+
+/*Combos*/
+
+.brainCombosDiv {
+  background: rgba(255, 255, 255, 0.288);
+  border-radius: 5px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.brainCombosDiv img {
+  width: 10%;
+}
+
+.comboheading {
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
+  border: 2px solid white;
+  width: 90%;
+  padding: 4px;
+  font-size: 12px;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#onebrain p,
+#twobrains p,
+#threebrains p,
+#fourbrains p,
+#fivebrains p {
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
+  font-size: 12px;
+  float: right;
+  margin-right: 5%;
+}
+
+#onebrain *,
+#twobrains *,
+#threebrains *,
+#fourbrains *,
+#fivebrains * {
+  display: inline-block;
+}
+
+#onebrain,
+#twobrains,
+#threebrains,
+#fourbrains,
+#fivebrains {
+  margin-left: 5%;
+  margin-top: 1%;
+}
+
+#comboheading1 {
+  margin-top: 2%;
+}
+
 .dots {
   font-size: 55px;
   font-family: "Fontdiner Swanky", cursive;
