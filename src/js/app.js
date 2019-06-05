@@ -37,8 +37,7 @@ function init() {
   formSubscribeEl.addEventListener("submit", subscribe);
   btnSpin.addEventListener("click", fakeSpinForModalsTesting);
   let introSound = document.getElementById("myAudioIntro");
-  introSound.volume = 0.1;
-
+  introSound.volume = 0.35;
   introSound.play();
 }
 
@@ -58,28 +57,25 @@ function fakeSpinForModalsTesting(params) {
     console.log("Spins left: ", user.spins);
     let spin = document.querySelector(".playerScore");
     spin.innerHTML = user.spins;
-  } else {
-    // Is user logged in?
-    if (user.name === "" || user.name === "guest") {
-      // User is NOT logged in. Has he subscribed already?
-      if (user.email === "") {
-        // No. Ask to subscribe (subscribe modal)
-
-        subscribeModal();
-      } else {
-        // Yes. Ask to sign up (signup midal)
-        // TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
-      }
-    } else {
-      if (user.spins === 1) {
-        let button = document.getElementById("btnSpin");
-        button.classList.remove("playFancy");
-        button.classList.add("disabled");
-      }
-      // Notify: Oh shoot, you have no more spins, here are your options:....
-      // TODO: Make the modal and call it here
-    }
+    console.log(user);
   }
+
+  // Is user logged in?
+  else if (user.name === "" || user.name === "guest") {
+    // User is NOT logged in. Has he subscribed already?
+    if (user.email === "") {
+      // No. Ask to subscribe (subscribe modal)
+
+      subscribeModal();
+    } else {
+      // Yes. Ask to sign up (signup midal)
+      // TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
+    }
+  } else {
+  }
+
+  // Notify: Oh shoot, you have no more spins, here are your options:....
+  // TODO: Make the modal and call it here
 }
 
 // Modals general
