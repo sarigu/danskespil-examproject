@@ -36,6 +36,10 @@ function init() {
   logoutButtonEl.addEventListener("click", onLogout);
   formSubscribeEl.addEventListener("submit", subscribe);
   btnSpin.addEventListener("click", fakeSpinForModalsTesting);
+  let introSound = document.getElementById("myAudioIntro");
+  introSound.volume = 0.1;
+
+  introSound.play();
 }
 
 // UTILITIES

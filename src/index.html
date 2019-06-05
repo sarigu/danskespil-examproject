@@ -469,13 +469,15 @@
         </div>
       </div>
     </div>
-    <audio id="myAudio"><source src="/src/sounds/rolling.mp3" type="audio/ogg"></audio>
-    <audio id="myAudioApplause"><source src="/src/sounds/applause.mp3" type="audio/ogg"></audio>
-      <audio id="myAudioLaugh"><source src="/src/sounds/Evil Laugh Male.mp3" type="audio/ogg"></audio>
-        <audio id="myAudioKnife"><source src="/src/sounds/Throw_Knife.mp3" type="audio/ogg"></audio>
-          <audio id="myAudioRico"><source src="/src/sounds/Western Ricochet.mp3" type="audio/ogg"></audio>
+        <!-- Modal Ends -->
 
-    <!-- Modal Ends -->
+        <!-- Sounds HTML -->
+    <audio id="myAudioIntro"><source src="/src/sounds/Computer_Start-Up-Your_Mom-1280862923.mp3" type="audio/ogg"></audio>
+    <audio id="myAudio"><source src="/src/sounds/rolling.mp3" type="audio/ogg"></audio>
+    <audio id="myAudioScore"><source src="/src/sounds/Ta Da-SoundBible.com-1884170640.mp3" type="audio/ogg"></audio>
+    <audio id="myAudioLaugh"><source src="/src/sounds/Evil Laugh Male.mp3" type="audio/ogg"></audio>
+    <audio id="myAudioButton"><source src="/src/sounds/Electrical_Sweep-Sweeper-1760111493.mp3" type="audio/ogg"></audio>
+    <audio id="myAudioRico"><source src="/src/sounds/Western Ricochet.mp3" type="audio/ogg"></audio>
 
     <!-- jquery library source -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
@@ -503,29 +505,31 @@
         //animation type from library
         easing: "easeOutSine",
         //for how long
-        time: 4000,
+        time: 5000,
         //how fast
-        loops: 5,
+        loops: 10,
         //when button "spin" is pressed this happens
         onStart: function() {
           $(".playFancy").addClass("disabled");
           let winAmount=document.querySelector("#winScore").innerText;
               document.querySelector("#winScore").innerText="Spinning...";
+              let buttonSound = document.getElementById("myAudioButton"); 
+              buttonSound.volume=.3;
+              buttonSound.play(); 
               let rollingSound = document.getElementById("myAudio"); 
+              rollingSound.volume=.1;
               rollingSound.play(); 
-
         },
         onEnd: function() {
           let spinAmount=document.querySelector("#spinAmount").innerText;
           if(spinAmount==0){
             $(".playFancy").addClass("disabled")
           }else{$(".playFancy").removeClass("disabled")
-          let laughSound = document.getElementById("myAudioLaugh"); 
-              laughSound.play();
+          // let laughSound = document.getElementById("myAudioLaugh"); 
+          // laughSound.volume=.6;
+          //     laughSound.play();
 }
-
         },
-
         //when user gets brain this function starts
         onWin: function(winCount, winners) {
           // react to the # of winning slots
@@ -535,18 +539,9 @@
               // console.log(Number(winAmount));
               document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
               document.querySelector("#winScore").innerText="You have won!";
-              let winningSound = document.getElementById("myAudioKnife"); 
-              let winningSound1 = document.getElementById("myAudioRico"); 
+              let winningSound1 = document.getElementById("myAudioScore"); 
               winningSound1.play(); 
-
-              winningSound.play(); 
-
-          }
-
-
-          }
-        }
-      );
+          }}});
       
   //Tabs for top players and combos
   function openPage(pageName,elmnt,color) {
