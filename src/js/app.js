@@ -93,17 +93,17 @@ function subscribeGuest(e) {
 
 // Gameplay
 function spin() {
-	  console.log("spin clicked");
-// Remove 1 spin
+	console.log("spin clicked");
+	// Remove 1 spin
 	user.spins = user.spins - 1;
 	console.log("Spins left: ", user.spins);
-
-  // TODO: Add new score to the local user here
+	
+	let spin = document.querySelector(".playerScore");
+	spin.innerHTML = user.spins;
 
   // Spins left?
   if (user.spins > 1) {
-    let spin = document.querySelector(".playerScore");
-    spin.innerHTML = user.spins;
+  
   } else {
     // Is user logged in?
     if (!user.name) {
