@@ -469,6 +469,12 @@
         </div>
       </div>
     </div>
+    <audio id="myAudio"><source src="/src/sounds/rolling.mp3" type="audio/ogg"></audio>
+    <audio id="myAudioApplause"><source src="/src/sounds/applause.mp3" type="audio/ogg"></audio>
+      <audio id="myAudioLaugh"><source src="/src/sounds/Evil Laugh Male.mp3" type="audio/ogg"></audio>
+        <audio id="myAudioKnife"><source src="/src/sounds/Throw_Knife.mp3" type="audio/ogg"></audio>
+          <audio id="myAudioRico"><source src="/src/sounds/Western Ricochet.mp3" type="audio/ogg"></audio>
+
     <!-- Modal Ends -->
 
     <!-- jquery library source -->
@@ -504,25 +510,43 @@
         onStart: function() {
           $(".playFancy").addClass("disabled");
           let winAmount=document.querySelector("#winScore").innerText;
-              document.querySelector("#winScore").innerText=0;
+              document.querySelector("#winScore").innerText="Spinning...";
+              let rollingSound = document.getElementById("myAudio"); 
+              rollingSound.play(); 
+
         },
         onEnd: function() {
-           $(".playFancy").removeClass("disabled")
+          let spinAmount=document.querySelector("#spinAmount").innerText;
+          if(spinAmount==0){
+            $(".playFancy").addClass("disabled")
+          }else{$(".playFancy").removeClass("disabled")
+          let laughSound = document.getElementById("myAudioLaugh"); 
+              laughSound.play();
+}
+
         },
 
         //when user gets brain this function starts
         onWin: function(winCount, winners) {
           // react to the # of winning slots
-          if (winCount > 0) {
-            console.log("You got " + winCount +" brains");
+          if (winCount>0) {
+            // console.log("You got " + winCount +" brains");
               let winAmount=document.querySelector("#PlayerScore").innerText;
               // console.log(Number(winAmount));
               document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
-              document.querySelector("#winScore").innerText="Brain Combo: "+ winCount;
+              document.querySelector("#winScore").innerText="You have won!";
+              let winningSound = document.getElementById("myAudioKnife"); 
+              let winningSound1 = document.getElementById("myAudioRico"); 
+              winningSound1.play(); 
+
+              winningSound.play(); 
+
+          }
+
 
           }
         }
-      });
+      );
       
   //Tabs for top players and combos
   function openPage(pageName,elmnt,color) {

@@ -882,10 +882,11 @@ footer img {
   }
   .rightSide {
     grid-area: rightSide;
-    margin: 0 auto;
+    margin: 25px auto;
+    transform: scale(1.05) translateY(25px);
   }
   .fancy {
-    transform: scale(1);
+    transform: scale(1.05) translateY(25px);
     margin: 0 auto;
   }
 }
@@ -944,7 +945,7 @@ footer img {
   .fullGame {
     border: 10px solid #2c4b62;
     border-radius: 5px;
-    width: 100%;
+    width: 500px;
     transform: scale(0.8) translate(-60px, -50px);
   }
   .theGame {
@@ -953,6 +954,7 @@ footer img {
     grid-template-rows: 1fr;
     grid-template-areas: "leftSide" "rightSide";
     height: 100%;
+    width: 100%;
   }
 
   .leftSide {
@@ -962,10 +964,10 @@ footer img {
   .rightSide {
     grid-area: rightSide;
     margin: 0 auto;
-    transform: scale(0.9);
+    transform: scale(0.75);
   }
   .fancy {
-    transform: scale(0.9);
+    transform: scale(0.75);
     margin: 0 auto;
   }
 }

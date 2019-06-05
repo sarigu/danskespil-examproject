@@ -67,7 +67,7 @@ function fakeSpinForModalsTesting(params) {
         // TODO: Call sign up function + Add different text to the modal (get +10 now and +10 daily)
       }
     } else {
-      if ((user.spins = 1)) {
+      if (user.spins === 1) {
         let button = document.getElementById("btnSpin");
         button.classList.remove("playFancy");
         button.classList.add("disabled");
