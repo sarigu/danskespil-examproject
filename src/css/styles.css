@@ -960,14 +960,20 @@ footer img {
   .leftSide {
     grid-area: leftSide;
     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .rightSide {
     grid-area: rightSide;
     margin: 0 auto;
-    transform: scale(0.75);
+    transform: scale(0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .fancy {
-    transform: scale(0.75);
+    transform: scale(0.8);
     margin: 0 auto;
   }
 }
