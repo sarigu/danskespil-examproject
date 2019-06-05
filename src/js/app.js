@@ -16,6 +16,8 @@ const logoutButtonEl = document.getElementById("logout");
 const loginButtonEl = document.getElementById("btn-login");
 const btnSpin = document.getElementById("btnSpin");
 const btnSubscribeModal = document.getElementById("btnSubscribeModal");
+const btnCancelSubscribeModal = document.getElementById("btnCancelSubscribeModal");
+
 // DOM other elements
 const greetingUserEl = document.getElementById("userName");
 // Help variables
@@ -44,6 +46,14 @@ function init() {
 	formSubscribeEl.addEventListener("submit", subscribe);
 	btnSpin.addEventListener("click", spin);
 	btnSubscribeModal.addEventListener("click", subscribeGuest);
+	btnCancelSubscribeModal.addEventListener("click", () => {
+		const response = window.confirm("You are about to lose free spins and the chance to play more for free! Are you sure?");
+		if (response) {
+			$("#modalSubscribe").modal("hide");
+		} else {
+			$("#modalSubscribe").modal("show");
+		}
+	});
 
 }
 
@@ -99,7 +109,7 @@ function spin() {
 }
 
 
-// Modals general
+// Modals
 function setOpenedModal(modalId) {
   openedModalId = modalId;
 }
