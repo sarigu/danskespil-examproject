@@ -817,11 +817,24 @@ footer img {
 
 .topList {
   background: rgba(255, 255, 255, 0.288);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   border-radius: 5px;
   width: 100%;
-  color: white;
-  font-family: "Fontdiner Swanky", cursive;
+}
+
+#leaderboardNames {
   padding: 5px;
+  text-align: left;
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
+}
+
+#leaderboardScores {
+  padding: 5px;
+  text-align: right;
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
 }
 /*.playerName {
   padding: 5px;
@@ -833,6 +846,16 @@ footer img {
   text-align: right;
   font-family: "Fontdiner Swanky", cursive;
   color: white;
+}
+.dots {
+  font-size: 55px;
+  font-family: "Fontdiner Swanky", cursive;
+  color: #fff;
+  border: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  letter-spacing: 15px;
 }*/
 
 /*Combos*/

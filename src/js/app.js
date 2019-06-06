@@ -345,7 +345,8 @@ firebase.auth().onAuthStateChanged(userAuth => {
 
 //LEADERBOARD
 
-let leaderboard = document.querySelector("#leaderboard");
+let leaderboardNames = document.querySelector("#leaderboardNames");
+let leaderboardScores = document.querySelector("#leaderboardScores");
 
 function getPlayers(currentUser) {
   console.log("Hallo wie gehts" + currentUser);
@@ -356,8 +357,9 @@ function getPlayers(currentUser) {
   //Delete current list
 
   // As long as <ul> has a child node, remove it
-  while (leaderboard.hasChildNodes()) {
-    leaderboard.removeChild(leaderboard.firstChild);
+  while (leaderboardNames.hasChildNodes() && leaderboardScores.hasChildNodes) {
+    leaderboardNames.removeChild(leaderboardNames.firstChild);
+    leaderboardScores.removeChild(leaderboardScores.firstChild);
   }
   //Reference to the collection
   userRef = db.collection("users");
@@ -373,11 +375,15 @@ function getPlayers(currentUser) {
       //console.log(doc.data());
       //doc.data().score gibt nur die scores zurück
       let lead = document.createElement("li");
-      let text = document.createTextNode(
-        counter + ".  " + doc.data().username + doc.data().score
-      );
+      let text = document.createTextNode(counter + ".  " + doc.data().username);
       lead.appendChild(text);
-      leaderboard.appendChild(lead);
+      let leadScore = document.createElement("li");
+      let textScore = document.createTextNode(doc.data().score);
+      leadScore.appendChild(textScore);
+
+      leaderboardNames.appendChild(lead);
+      leaderboardScores.appendChild(leadScore);
+
       counter++;
     });
 
