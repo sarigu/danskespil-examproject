@@ -25,7 +25,9 @@ const btnSubscribeModal = document.getElementById("btnSubscribeModal");
 const btnCancelSubscribeModal = document.getElementById(
   "btnCancelSubscribeModal"
 );
-const btnCancelOutOfSpinsModal = document.getElementById("btnCancelOutOfSpinsModal");
+const btnCancelOutOfSpinsModal = document.getElementById(
+  "btnCancelOutOfSpinsModal"
+);
 const closeSignupModal2 = document.getElementById("closeSignupModal2");
 
 const spinsAmountEl = document.getElementById("spinAmount");
@@ -69,7 +71,7 @@ function init() {
     playIntro();
   });
   btnCancelOutOfSpinsModal.addEventListener("click", () => {
-	$("#modalOutOfSpins").modal("hide");
+    $("#modalOutOfSpins").modal("hide");
   });
   formSignupModal.addEventListener("submit", onSignupGuest);
   closeSignupModal2.addEventListener("click", () => {
@@ -101,7 +103,7 @@ function subscribeGuest(e) {
 }
 function playIntro() {
   let introSound = document.getElementById("myAudioIntro");
-  introSound.volume = 0.35;
+  introSound.volume = 0.2;
   introSound.play();
 }
 
@@ -110,11 +112,16 @@ function spin() {
   console.log("spin clicked");
 
   // Remove 1 spin
-  user.spins = user.spins - 1;
+  setTimeout(() => {
+    user.spins = user.spins - 1;
+  }, 1000);
+
   console.log("Spins left: ", user.spins);
 
   let spin = document.querySelector(".playerScore");
-  spin.innerHTML = user.spins;
+  setTimeout(() => {
+    spin.innerHTML = user.spins;
+  }, 1000);
 
   // Spins left?
   if (user.spins > 0) {
@@ -123,7 +130,7 @@ function spin() {
     user.score = user.score + Number(score.innerText);
     // console.log(user);
   } else {
-	// Is user logged in?
+    // Is user logged in?
     if (!user.username) {
       console.log("user not logged in");
       // User is NOT logged in. Has he subscribed already?
@@ -131,27 +138,26 @@ function spin() {
         // No. Ask to subscribe (subscribe modal)
         setTimeout(() => {
           subscribeModalOpen();
-        }, 3000);
+        }, 2500);
       } else {
         // Yes, subscribed. Ask to sign up (signup modal)
         setTimeout(() => {
           SignUpModal2Open();
-        }, 3000);
+        }, 2500);
       }
     } else {
       // User is logged in
-	  // Notify: Oh shoot, you have no more spins, here are your options:....
-	  // TODO: Make the modal and call it here
-		setTimeout(() => {
-			outOfSpinsModalOpen();
-		}, 3000);
+      // Notify: Oh shoot, you have no more spins, here are your options:....
+      // TODO: Make the modal and call it here
+      setTimeout(() => {
+        outOfSpinsModalOpen();
+      }, 2500);
     }
   }
   // Update user if exists
   if (user.username) {
-  	updateUser(user.uid, user)
+    updateUser(user.uid, user);
   }
-
 }
 // Modals
 function setOpenedModal(modalId) {
@@ -210,7 +216,7 @@ function subscribeModalOpen() {
 }
 
 function outOfSpinsModalOpen() {
-	$("#modalOutOfSpins").modal("show");
+  $("#modalOutOfSpins").modal("show");
 }
 
 // SUBSCRIBE section
@@ -220,7 +226,7 @@ function subscribe(e) {
   let email = formSubscribeEl.querySelector("input").value;
 
   if (!user.email) {
-	user.email = email;
+    user.email = email;
   } else {
     window.alert(`You have already subscribed using this email: ${user.email}`);
   }

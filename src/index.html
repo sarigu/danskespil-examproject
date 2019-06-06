@@ -613,33 +613,49 @@
         //div id that starts the spin
         spinner: ".playFancy",
         //animation type from library
-        easing: "easeOutSine",
+        easing: "easeOutElastic",
         //for how long
-        time: 1000,
+        time: 2300,
         //how fast
         loops: 5,
         //when button "spin" is pressed this happens
         
         onStart: function() {
-          $(".playFancy").addClass("disabled");
+          let winscore=document.querySelector("#winScore");
+          let playercore=document.querySelector("#PlayerScore");
+          let spinsleft=document.querySelector("#spinAmount");
+          spinsleft.classList.add("animate2");
+          playercore.classList.remove("animate1");
+          winscore.classList.remove("animate");
+          $(".playFancy").addClass("faded");
+          setTimeout(() => {
+            $(".playFancy").addClass("disabled");
+            }, 900);
+
           let winAmount=document.querySelector("#winScore").innerText;
           document.querySelector("#winScore").innerText=0;
           currentScore=0;
               // document.querySelector("#winScore").innerText="Spinning...";
               let buttonSound = document.getElementById("myAudioButton"); 
-              buttonSound.volume=.3;
+              // buttonSound.pause(); 
+              // buttonSound.currentTime=0.0;
+              buttonSound.volume=.2;
               buttonSound.play(); 
-              let rollingSound = document.getElementById("myAudio"); 
-              rollingSound.volume=.1;
+              let rollingSound = document.getElementById("myAudio");
+              // rollingSound.pause(); 
+              // rollingSound.currentTime=0.0;
+              // rollingSound.volume=.1;
               rollingSound.play(); 
         },
         onEnd: function() {
           let spinAmount=document.querySelector("#spinAmount").innerText;
-          if(spinAmount==0){
-            $(".playFancy").addClass("disabled")
-          }else{$(".playFancy").removeClass("disabled")
-}
-        },
+          let spinsleft=document.querySelector("#spinAmount");
+          spinsleft.classList.remove("animate2");
+          setTimeout(() => {
+            $(".playFancy").removeClass("disabled")}, 2500);
+            $(".playFancy").removeClass("faded");
+          },
+
         //when user gets brain this function starts
         onWin: function(winCount, winners) {
           // react to the # of winning slots
@@ -648,11 +664,22 @@
             console.log(currentScore);
             // console.log("You got " + winCount +" brains");
               let winAmount=document.querySelector("#PlayerScore").innerText;
+              let winscore=document.querySelector("#winScore");
+              let playercore=document.querySelector("#PlayerScore");
+              
+              winscore.classList.add("animate");
+              setTimeout(() => {
+                playercore.classList.add("animate1");
+            }, 1000);
               // console.log(Number(winAmount));
-              document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
+              setTimeout(() => {
+                document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
+              }, 1000);
               document.querySelector("#winScore").innerText=currentScore;
               let winningSound1 = document.getElementById("myAudioScore"); 
-              winningSound1.volume=.5;
+              // winningSound1.pause();
+              // winningSound1.currentTime=0.0;
+              winningSound1.volume=.2;
               winningSound1.play(); 
           }
         }});
