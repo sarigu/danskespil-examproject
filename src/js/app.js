@@ -55,6 +55,7 @@ let leaderboardScores = document.querySelector("#leaderboardScores");
 window.addEventListener("DOMContentLoaded", init());
 
 function init() {
+  checkSpins();
   getTopPlayersOnce();
   // Event listeners
   formEl.addEventListener("submit", onSignup);
@@ -110,6 +111,18 @@ function playIntro() {
   introSound.volume = 0.2;
   introSound.play();
 }
+function checkSpins() {
+  console.log(
+    "Hey,i don't have spins, so I will disable 'Spin' button for ya!"
+  );
+  if (user.spins < 1) {
+    document.querySelector(".playFancy").classList.add("disabled");
+    // $(".playFancy").addClass("disabled");
+  } else {
+    // $(".playFancy").removeClass("disabled");
+    document.querySelector(".playFancy").classList.remove("disabled");
+  }
+}
 
 // Gameplay
 function spin() {
@@ -150,6 +163,7 @@ function spin() {
       // User is logged in
       // Notify: Oh shoot, you have no more spins, here are your options:....
       // TODO: Make the modal and call it here
+      $(".playFancy").addClass("disabled");
       setTimeout(() => {
         outOfSpinsModalOpen();
       }, 2500);
