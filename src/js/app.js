@@ -96,6 +96,16 @@ function init() {
 }
 
 // UTILITIES
+function checkSpins() {
+  setTimeout(() => {
+    if (user.spins < 1) {
+      console.log("Sup man");
+      document.querySelector(".playFancy").classList.add("disabled");
+    } else {
+      document.querySelector(".playFancy").classList.remove("disabled");
+    }
+  }, 2500);
+}
 function subscribeGuest(e) {
   e.preventDefault();
   user.email = emailInputModalEl.value;
@@ -110,13 +120,6 @@ function playIntro() {
   let introSound = document.getElementById("myAudioIntro");
   introSound.volume = 0.2;
   introSound.play();
-}
-function checkSpins() {
-  if (user.spins < 1) {
-    document.querySelector(".playFancy").classList.add("disabled");
-  } else {
-    document.querySelector(".playFancy").classList.remove("disabled");
-  }
 }
 
 // Gameplay
