@@ -25,7 +25,9 @@ const btnSubscribeModal = document.getElementById("btnSubscribeModal");
 const btnCancelSubscribeModal = document.getElementById(
   "btnCancelSubscribeModal"
 );
-const btnCancelOutOfSpinsModal = document.getElementById("btnCancelOutOfSpinsModal");
+const btnCancelOutOfSpinsModal = document.getElementById(
+  "btnCancelOutOfSpinsModal"
+);
 const closeSignupModal2 = document.getElementById("closeSignupModal2");
 
 const spinsAmountEl = document.getElementById("spinAmount");
@@ -69,7 +71,7 @@ function init() {
     playIntro();
   });
   btnCancelOutOfSpinsModal.addEventListener("click", () => {
-	$("#modalOutOfSpins").modal("hide");
+    $("#modalOutOfSpins").modal("hide");
   });
   formSignupModal.addEventListener("submit", onSignupGuest);
   closeSignupModal2.addEventListener("click", () => {
@@ -107,6 +109,8 @@ function playIntro() {
 
 // Gameplay
 function spin() {
+  getPlayers(user);
+
   console.log("spin clicked");
 
   // Remove 1 spin
@@ -123,7 +127,7 @@ function spin() {
     user.score = user.score + Number(score.innerText);
     // console.log(user);
   } else {
-	// Is user logged in?
+    // Is user logged in?
     if (!user.username) {
       console.log("user not logged in");
       // User is NOT logged in. Has he subscribed already?
@@ -140,18 +144,17 @@ function spin() {
       }
     } else {
       // User is logged in
-	  // Notify: Oh shoot, you have no more spins, here are your options:....
-	  // TODO: Make the modal and call it here
-		setTimeout(() => {
-			outOfSpinsModalOpen();
-		}, 3000);
+      // Notify: Oh shoot, you have no more spins, here are your options:....
+      // TODO: Make the modal and call it here
+      setTimeout(() => {
+        outOfSpinsModalOpen();
+      }, 3000);
     }
   }
   // Update user if exists
   if (user.username) {
-  	updateUser(user.uid, user)
+    updateUser(user.uid, user);
   }
-
 }
 // Modals
 function setOpenedModal(modalId) {
@@ -210,7 +213,7 @@ function subscribeModalOpen() {
 }
 
 function outOfSpinsModalOpen() {
-	$("#modalOutOfSpins").modal("show");
+  $("#modalOutOfSpins").modal("show");
 }
 
 // SUBSCRIBE section
@@ -220,7 +223,7 @@ function subscribe(e) {
   let email = formSubscribeEl.querySelector("input").value;
 
   if (!user.email) {
-	user.email = email;
+    user.email = email;
   } else {
     window.alert(`You have already subscribed using this email: ${user.email}`);
   }
@@ -339,3 +342,88 @@ firebase.auth().onAuthStateChanged(userAuth => {
     console.log("User not logged in");
   }
 });
+
+//LEADERBOARD
+
+let leaderboard = document.querySelector("#leaderboard");
+
+function getPlayers(user) {
+  console.log("Hallo" + user);
+  let counter = 1;
+  const db = firebase.firestore();
+  let inLead = false;
+
+  //Delete current list
+
+  // As long as <ul> has a child node, remove it
+  while (leaderboard.hasChildNodes()) {
+    leaderboard.removeChild(leaderboard.firstChild);
+  }
+  //Reference to the collection
+  userRef = db.collection("users");
+  var query = userRef.orderBy("score", "desc").limit(9);
+  query.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      if (doc.data().username == user.username) {
+        inLead = true;
+      }
+      //doc.data() is never undefined for query doc snapshots
+      //console.log(doc.id, " => ", doc.data());
+      //console.log("score:" + doc.data().score + "user: " + doc.data().username);
+      //console.log(doc.data());
+      //doc.data().score gibt nur die scores zurück
+      let lead = document.createElement("li");
+      let text = document.createTextNode(
+        "Place" +
+          counter +
+          " user: " +
+          doc.data().username +
+          " score:" +
+          doc.data().score
+      );
+      lead.appendChild(text);
+      leaderboard.appendChild(lead);
+      counter++;
+    });
+
+    if (inLead === false) {
+      getCurrentUsersPlace(user);
+    } else {
+    }
+  });
+}
+
+function getCurrentUsersPlace(user) {
+  let i = 0;
+  const db = firebase.firestore();
+  //if not sorted the position doesn't make sense
+  userRef = db.collection("users");
+  var query = userRef.orderBy("score", "desc");
+  query.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      i++;
+      if (doc.data().username == user.username) {
+        let dot = document.createElement("li");
+        let dots = document.createTextNode("...");
+        dot.appendChild(dots);
+
+        console.log(doc.data().username + "  " + i);
+        let lead = document.createElement("li");
+        let text = document.createTextNode(
+          "Place" +
+            i +
+            " user: " +
+            doc.data().username +
+            " score:" +
+            doc.data().score
+        );
+        lead.appendChild(text);
+        leaderboard.appendChild(dot);
+        leaderboard.appendChild(lead);
+      }
+    });
+  });
+}
+
+//for alles i++ und wenn uid irgendwas gleicht dann stopp
+//parent.removeChild(child);
