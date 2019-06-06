@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="http://guckimonster.de/kea3/brainspin/src/index.html">
+<meta property="og:title" content="Brainspin">
+<meta property="og:description" content="Play Brainspin too! It is a fun slot machine game ">
+<meta property="og:image" content="http://guckimonster.de/kea3/weppage_image.png">
+<meta property="og:image:width" content="791">
+<meta property="og:image:height" content="424">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="http://guckimonster.de/kea3/brainspin/src/index.html">
+<meta property="twitter:title" content="Brainspin">
+<meta property="twitter:description" content="Play Brainspin! ">
+<meta property="twitter:image" content="http://guckimonster.de/kea3/weppage_image.png">
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       rel="stylesheet"
@@ -190,7 +208,17 @@
                     </div>
                     <div id="brainCombos" class="tabcontent">
                         <div class="brainCombosDiv">
-                          <img src="img/spinCombos.png" alt="">
+                          <p id="comboheading1" class="comboheading">1x brain</p>
+                          <div id="onebrain"><img src="img/slots/brain.png" alt="brain"><p>+500</p></div>
+                          <p class="comboheading">2x brains</p>
+                          <div id="twobrains"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><p>+1000</p></div>
+                          <p class="comboheading">3x brains</p>
+                          <div id="threebrains"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><p>+1500</p></div>
+                          <p class="comboheading">4x brains</p>
+                          <div id="fourbrains"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><p>+2000</p></div>
+                          <p class="comboheading">5x brains</p>
+                          <div id="fivebrains"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><img src="img/slots/brain.png" alt="brain"><p>+2500</p></div>
+              
                         </div>
                     </div>
                   </div>
@@ -198,21 +226,32 @@
                 </div>
               </div>
               </div>
+              </div>
+              <img id="rabbit_desk" src="img/slots/rabbit.png" alt="rabbit">
+              <img id="joker_desk" src="img/slots/joker.png" alt="joker">
+          </section>
+          <section id="socialmedia">
 
 
+            <!--Share links; Genrated from here: https://css-tricks.com/simple-social-sharing-links/-->
+            <p>Share the fun with friends</p>
+              <div id="socialmediaIcons">            
+                 <a href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fguckimonster.de%2Fkea3%2Fbrainspin%2Findex.html" target="_blank"><i id="facebookicon" class="fa fa-facebook-square"></i></a>
+                 <a href="https://twitter.com/intent/tweet?url=http%3A%2F%2Fguckimonster.de%2Fkea3%2Fbrainspin%2Findex.html&text=Hi%20Friends%20%3A)%20this%20game%20is%20tons%20of%20fun%2C%20you%20should%20definitely%20join%20me!%20" target="_blank"><i id="twittericon" class="fa fa-twitter-square"></i></a>
               </div>
           </section>
             <section id="subscribefield">
               <p>Subscribe to win prizes and to see our latest news</p>
       
               <div id="subscribebox">
-                <input type="email" name="email" id="emailSubscribe" value="Email address" />
+                <input type="email" name="email" id="emailSubscribe" placeholder="Email address" />
                 <button>Subscribe</button>
               </div>
             </section>
             <section id="othergames">
               <h1>Featured Casino Game</h1>
               <div id="underline"></div>
+             <div id="imagecontainer">
               <a href=" https://casino.danskespil.dk/da" target="_blank">         
                 <img
                 id="arcadeBomb"
@@ -281,10 +320,12 @@
             />     
           </a>
   
+             </div>
+             <a id="casinolink" href="https://casino.danskespil.dk/da" target="_blank"
+             >Visit The Full Casino Website</a
+           >
             </section>
-            <a id="casinolink" href="https://casino.danskespil.dk/da"
-              >Visit The Full Casino Website</a
-            >
+        
           </main>
           <footer>
             <img src="img/logo_danskespil.jpg" alt="danske spil logo" />
