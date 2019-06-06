@@ -349,7 +349,8 @@ let leaderboardNames = document.querySelector("#leaderboardNames");
 let leaderboardScores = document.querySelector("#leaderboardScores");
 
 function getPlayers(currentUser) {
-  console.log("Hallo wie gehts" + currentUser);
+  console.log("Hallo wie gehts");
+  console.log(currentUser);
   let counter = 1;
   const db = firebase.firestore();
   let inLead = false;
@@ -388,13 +389,14 @@ function getPlayers(currentUser) {
     });
 
     if (inLead === false) {
-      getCurrentUsersPlace(user.username);
+      getCurrentUsersPlace(currentUser);
     } else {
     }
   });
 }
 
 function getCurrentUsersPlace(currentUser) {
+  console.log("das ist die zweite funktion");
   let i = 0;
   const db = firebase.firestore();
   //if not sorted the position doesn't make sense
@@ -408,19 +410,22 @@ function getCurrentUsersPlace(currentUser) {
         let dots = document.createTextNode("...");
         dot.appendChild(dots);
 
-        console.log(doc.data().username + "  " + i);
+        let empty = document.createElement("li");
+        let emptyspace = document.createTextNode("...");
+        empty.appendChild(emptyspace);
+
         let lead = document.createElement("li");
-        let text = document.createTextNode(
-          i +
-            "." +
-            " user: " +
-            doc.data().username +
-            " score:" +
-            doc.data().score
-        );
+        let text = document.createTextNode(i + ".  " + doc.data().username);
         lead.appendChild(text);
-        leaderboard.appendChild(dot);
-        leaderboard.appendChild(lead);
+
+        let leadScore = document.createElement("li");
+        let textScore = document.createTextNode(doc.data().score);
+        leadScore.appendChild(textScore);
+
+        leaderboardNames.appendChild(dot);
+        leaderboardScores.appendChild(empty);
+        leaderboardNames.appendChild(lead);
+        leaderboardScores.appendChild(leadScore);
       }
     });
   });
