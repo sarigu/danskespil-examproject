@@ -540,15 +540,15 @@ footer img {
   #rabbit_desk {
     width: 10%;
     position: absolute;
-    top: 580px;
+    top: 560px;
     left: 2%;
   }
 
   #joker_desk {
     width: 15%;
     position: absolute;
-    top: 480px;
-    left: 72%;
+    top: 460px;
+    right: 5%;
   }
 
   #socialmedia {
