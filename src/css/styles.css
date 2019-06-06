@@ -36,7 +36,7 @@ body {
 .intro {
   padding: 15px;
   text-align: center;
-  color: #2e0202;
+  color: white;
   font-size: 16px;
 }
 
@@ -226,9 +226,10 @@ button.navbar-toggler:focus {
 /*under18 end*/
 
 #game {
-  background: #fffdf4;
+  background: url(../img/background.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
   width: 100%;
-  background-size: 100%;
 }
 
 /* //// Layout /////*/
@@ -547,8 +548,8 @@ footer img {
   #joker_desk {
     width: 15%;
     position: absolute;
-    top: 460px;
-    right: 5%;
+    right: 0;
+    bottom: 100px;
   }
 
   #socialmedia {
@@ -824,6 +825,7 @@ footer img {
   left: 50%;
   width: 60vh;
   height: 450px;
+  margin-top: 40px;
 }
 .leftSide {
   display: flex;
@@ -868,9 +870,12 @@ footer img {
 
 .theGame {
   background: url("../img/background.jpg");
+  background-size: cover;
+
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 5vw;
+  height: 55vh;
 }
 .contentWrapper {
   border: 1px solid black;
@@ -909,6 +914,7 @@ footer img {
   width: 100%;
   font-family: "Fontdiner Swanky", cursive;
   color: white;
+  height: 280px;
 }
 
 #leaderboardNames {
@@ -928,10 +934,13 @@ footer img {
 #brainCombos {
   background: rgba(255, 255, 255, 0.288);
   border-radius: 5px;
-  display: flex;
-  flex-direction: column;
   width: 100%;
+  height: 280px;
   padding-top: 2%;
+}
+.comboList {
+  width: 20vw;
+  margin: 0 auto;
 }
 
 #brainCombos img {
@@ -1216,6 +1225,9 @@ footer img {
     border-radius: 5px;
     width: 500px;
     transform: scale(0.8) translate(-60px, -50px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .theGame {
     display: grid;

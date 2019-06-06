@@ -114,9 +114,7 @@ function playIntro() {
 function checkSpins() {
   if (user.spins < 1) {
     document.querySelector(".playFancy").classList.add("disabled");
-    // $(".playFancy").addClass("disabled");
   } else {
-    // $(".playFancy").removeClass("disabled");
     document.querySelector(".playFancy").classList.remove("disabled");
   }
 }
@@ -476,14 +474,14 @@ function getCurrentUsersPlace(currentUser) {
     let lead = document.createElement("li");
     let text = document.createTextNode("guest");
     lead.appendChild(text);
-    lead.style.padding = "10px";
+    lead.style.padding = "4px";
     lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     lead.style.width = "100%";
 
     let leadScore = document.createElement("li");
     let textScore = document.createTextNode(user.score);
     leadScore.appendChild(textScore);
-    leadScore.style.padding = "10px";
+    leadScore.style.padding = "4px";
     leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     leadScore.style.width = "100%";
 
@@ -515,14 +513,14 @@ function getCurrentUsersPlace(currentUser) {
             counter + ".  " + doc.data().username
           );
           lead.appendChild(text);
-          lead.style.padding = "10px";
+          lead.style.padding = "4px";
           lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
           lead.style.width = "100%";
 
           let leadScore = document.createElement("li");
           let textScore = document.createTextNode(doc.data().score);
           leadScore.appendChild(textScore);
-          leadScore.style.padding = "10px";
+          leadScore.style.padding = "4px";
           leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
           leadScore.style.width = "100%";
 
