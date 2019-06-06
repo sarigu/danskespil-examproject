@@ -25,7 +25,9 @@ const btnSubscribeModal = document.getElementById("btnSubscribeModal");
 const btnCancelSubscribeModal = document.getElementById(
   "btnCancelSubscribeModal"
 );
-const btnCancelOutOfSpinsModal = document.getElementById("btnCancelOutOfSpinsModal");
+const btnCancelOutOfSpinsModal = document.getElementById(
+  "btnCancelOutOfSpinsModal"
+);
 const closeSignupModal2 = document.getElementById("closeSignupModal2");
 
 const spinsAmountEl = document.getElementById("spinAmount");
@@ -45,11 +47,15 @@ let user = {
   score: 1000
 };
 
+let leaderboardNames = document.querySelector("#leaderboardNames");
+let leaderboardScores = document.querySelector("#leaderboardScores");
+
 // INIT
 
 window.addEventListener("DOMContentLoaded", init());
 
 function init() {
+  getTopPlayersOnce();
   // Event listeners
   formEl.addEventListener("submit", onSignup);
   formSignInEl.addEventListener("submit", onSignin);
@@ -69,7 +75,7 @@ function init() {
     playIntro();
   });
   btnCancelOutOfSpinsModal.addEventListener("click", () => {
-	$("#modalOutOfSpins").modal("hide");
+    $("#modalOutOfSpins").modal("hide");
   });
   formSignupModal.addEventListener("submit", onSignupGuest);
   closeSignupModal2.addEventListener("click", () => {
@@ -107,6 +113,8 @@ function playIntro() {
 
 // Gameplay
 function spin() {
+  getPlayers(user.username);
+
   console.log("spin clicked");
 
   // Remove 1 spin
@@ -123,7 +131,7 @@ function spin() {
     user.score = user.score + Number(score.innerText);
     // console.log(user);
   } else {
-	// Is user logged in?
+    // Is user logged in?
     if (!user.username) {
       console.log("user not logged in");
       // User is NOT logged in. Has he subscribed already?
@@ -140,18 +148,17 @@ function spin() {
       }
     } else {
       // User is logged in
-	  // Notify: Oh shoot, you have no more spins, here are your options:....
-	  // TODO: Make the modal and call it here
-		setTimeout(() => {
-			outOfSpinsModalOpen();
-		}, 3000);
+      // Notify: Oh shoot, you have no more spins, here are your options:....
+      // TODO: Make the modal and call it here
+      setTimeout(() => {
+        outOfSpinsModalOpen();
+      }, 3000);
     }
   }
   // Update user if exists
   if (user.username) {
-  	updateUser(user.uid, user)
+    updateUser(user.uid, user);
   }
-
 }
 // Modals
 function setOpenedModal(modalId) {
@@ -210,7 +217,7 @@ function subscribeModalOpen() {
 }
 
 function outOfSpinsModalOpen() {
-	$("#modalOutOfSpins").modal("show");
+  $("#modalOutOfSpins").modal("show");
 }
 
 // SUBSCRIBE section
@@ -220,7 +227,7 @@ function subscribe(e) {
   let email = formSubscribeEl.querySelector("input").value;
 
   if (!user.email) {
-	user.email = email;
+    user.email = email;
   } else {
     window.alert(`You have already subscribed using this email: ${user.email}`);
   }
@@ -339,3 +346,125 @@ firebase.auth().onAuthStateChanged(userAuth => {
     console.log("User not logged in");
   }
 });
+
+//LEADERBOARD
+
+function getTopPlayersOnce() {
+  let counter = 1;
+  const db = firebase.firestore();
+  //Reference to the collection
+  userRef = db.collection("users");
+  var query = userRef.orderBy("score", "desc").limit(9);
+  query.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      let lead = document.createElement("li");
+      let text = document.createTextNode(counter + ".  " + doc.data().username);
+      lead.appendChild(text);
+      let leadScore = document.createElement("li");
+      let textScore = document.createTextNode(doc.data().score);
+      leadScore.appendChild(textScore);
+
+      leaderboardNames.appendChild(lead);
+      leaderboardScores.appendChild(leadScore);
+
+      counter++;
+    });
+  });
+}
+
+function getPlayers(currentUser) {
+  let counter = 1;
+  const db = firebase.firestore();
+  let inLead = false;
+
+  //Delete the current list as long as <ul> has a child nodes
+  while (leaderboardNames.hasChildNodes() && leaderboardScores.hasChildNodes) {
+    leaderboardNames.removeChild(leaderboardNames.firstChild);
+    leaderboardScores.removeChild(leaderboardScores.firstChild);
+  }
+  //Reference to the collection
+  userRef = db.collection("users");
+
+  //orders the data by score, from top to bottom and the return is limited to 9
+  var query = userRef.orderBy("score", "desc").limit(9);
+  query.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      //Check if the current user has one of the top 9 scores
+      if (doc.data().username == currentUser) {
+        inLead = true;
+      }
+      //adds the username from the current document from the database to the list item
+      let lead = document.createElement("li");
+      let text = document.createTextNode(counter + ".  " + doc.data().username);
+      lead.appendChild(text);
+      //adds the score from the current document from the database to the list item
+      let leadScore = document.createElement("li");
+      let textScore = document.createTextNode(doc.data().score);
+      leadScore.appendChild(textScore);
+
+      //appends list items to the lists for names
+      leaderboardNames.appendChild(lead);
+      //appends list items to the lists for scores
+      leaderboardScores.appendChild(leadScore);
+
+      //increases counter; counter is used to count the place of each player
+      counter++;
+    });
+
+    //checks if the current user was in the returned data, if not it calls the function to look for the place the user is on right now
+    if (inLead === false) {
+      getCurrentUsersPlace(currentUser);
+    } else {
+    }
+  });
+}
+
+function getCurrentUsersPlace(currentUser) {
+  console.log("das ist die zweite funktion");
+  let counter = 0;
+  const db = firebase.firestore();
+
+  //if not sorted the position wouldn't make sense
+  userRef = db.collection("users");
+  //not limit to the order since we want to find the current users positioning
+  var query = userRef.orderBy("score", "desc");
+  query.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      //increases the counter each loop, to see how many loops went by until the current user appears
+      //a workaround because firebase apparently can't find the position of data in the database
+      counter++;
+
+      //checks if the username in the document is equal to the current user, if so it adds the name and score to the list
+      if (doc.data().username == currentUser) {
+        let dot = document.createElement("li");
+        let dots = document.createTextNode("...");
+        dot.appendChild(dots);
+
+        let empty = document.createElement("li");
+        let emptyspace = document.createTextNode("...");
+        empty.appendChild(emptyspace);
+
+        let lead = document.createElement("li");
+        let text = document.createTextNode(
+          counter + ".  " + doc.data().username
+        );
+        lead.appendChild(text);
+        lead.style.padding = "10px";
+        lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        lead.style.width = "100%";
+
+        let leadScore = document.createElement("li");
+        let textScore = document.createTextNode(doc.data().score);
+        leadScore.appendChild(textScore);
+        leadScore.style.padding = "10px";
+        leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        leadScore.style.width = "100%";
+
+        leaderboardNames.appendChild(dot);
+        leaderboardScores.appendChild(empty);
+        leaderboardNames.appendChild(lead);
+        leaderboardScores.appendChild(leadScore);
+      }
+    });
+  });
+}

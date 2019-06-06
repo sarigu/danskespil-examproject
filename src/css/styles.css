@@ -738,6 +738,7 @@ footer img {
 .rightSide {
   left: 50%;
   width: 60vh;
+  height: 450px;
 }
 .leftSide {
   display: flex;
@@ -821,30 +822,34 @@ footer img {
   grid-template-columns: 1fr 1fr;
   border-radius: 5px;
   width: 100%;
+  font-family: "Fontdiner Swanky", cursive;
+  color: white;
 }
-.playerName {
+
+#leaderboardNames {
   padding: 5px;
   text-align: left;
-  font-family: "Fontdiner Swanky", cursive;
-  color: white;
+  margin-left: 2px;
 }
-.scoreAmount {
+
+#leaderboardScores {
+  padding: 5px;
   text-align: right;
-  font-family: "Fontdiner Swanky", cursive;
-  color: white;
+  margin-right: 22px;
 }
 
 /*Combos*/
 
-.brainCombosDiv {
+#brainCombos {
   background: rgba(255, 255, 255, 0.288);
   border-radius: 5px;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  padding-top: 2%;
 }
 
-.brainCombosDiv img {
+#brainCombos img {
   width: 10%;
 }
 
@@ -854,9 +859,10 @@ footer img {
   border: 2px solid white;
   width: 90%;
   padding: 4px;
-  font-size: 12px;
   margin-bottom: 0;
   padding-bottom: 0;
+  margin-left: 3%;
+  font-size: 11px;
 }
 
 #onebrain p,
@@ -866,9 +872,9 @@ footer img {
 #fivebrains p {
   font-family: "Fontdiner Swanky", cursive;
   color: white;
-  font-size: 12px;
   float: right;
   margin-right: 5%;
+  font-size: 11px;
 }
 
 #onebrain *,
@@ -889,7 +895,7 @@ footer img {
 }
 
 #comboheading1 {
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .dots {
@@ -908,10 +914,7 @@ footer img {
   grid-template-columns: 1fr 1fr;
   width: 100%;
 }
-.ourPlayer {
-  background: rgba(255, 255, 255, 0.3);
-  padding: 10px;
-}
+
 .grid-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -1163,22 +1166,10 @@ ul {
   margin: 0;
   list-style: none;
 }
-ol {
-  margin: 0;
-}
-/* .brainCombosImg {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
+
 .brainCombosDiv {
-  display: grid;
-  grid-template-columns: 1fr;
   border-radius: 5px;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   max-height: 350px;
   transform: scale(0.8) translateY(30px);
 }
