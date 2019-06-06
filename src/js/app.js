@@ -107,7 +107,7 @@ function subscribeGuest(e) {
 }
 function playIntro() {
   let introSound = document.getElementById("myAudioIntro");
-  introSound.volume = 0.35;
+  introSound.volume = 0.2;
   introSound.play();
 }
 
@@ -116,13 +116,13 @@ function spin() {
   getPlayers(user.username);
 
   console.log("spin clicked");
-
   // Remove 1 spin
   user.spins = user.spins - 1;
   console.log("Spins left: ", user.spins);
-
   let spin = document.querySelector(".playerScore");
-  spin.innerHTML = user.spins;
+  setTimeout(() => {
+    spin.innerHTML = user.spins;
+  }, 100);
 
   // Spins left?
   if (user.spins > 0) {
@@ -144,7 +144,7 @@ function spin() {
         // Yes, subscribed. Ask to sign up (signup modal)
         setTimeout(() => {
           SignUpModal2Open();
-        }, 3000);
+        }, 2500);
       }
     } else {
       // User is logged in
@@ -152,7 +152,7 @@ function spin() {
       // TODO: Make the modal and call it here
       setTimeout(() => {
         outOfSpinsModalOpen();
-      }, 3000);
+      }, 2500);
     }
   }
   // Update user if exists
