@@ -817,12 +817,13 @@ footer img {
 
 .topList {
   background: rgba(255, 255, 255, 0.288);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   border-radius: 5px;
   width: 100%;
+  color: white;
+  font-family: "Fontdiner Swanky", cursive;
+  padding: 5px;
 }
-.playerName {
+/*.playerName {
   padding: 5px;
   text-align: left;
   font-family: "Fontdiner Swanky", cursive;
@@ -832,7 +833,7 @@ footer img {
   text-align: right;
   font-family: "Fontdiner Swanky", cursive;
   color: white;
-}
+}*/
 
 /*Combos*/
 

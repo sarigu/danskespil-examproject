@@ -109,7 +109,7 @@ function playIntro() {
 
 // Gameplay
 function spin() {
-  getPlayers(user);
+  getPlayers(user.username);
 
   console.log("spin clicked");
 
@@ -347,8 +347,8 @@ firebase.auth().onAuthStateChanged(userAuth => {
 
 let leaderboard = document.querySelector("#leaderboard");
 
-function getPlayers(user) {
-  console.log("Hallo" + user);
+function getPlayers(currentUser) {
+  console.log("Hallo wie gehts" + currentUser);
   let counter = 1;
   const db = firebase.firestore();
   let inLead = false;
@@ -364,7 +364,7 @@ function getPlayers(user) {
   var query = userRef.orderBy("score", "desc").limit(9);
   query.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-      if (doc.data().username == user.username) {
+      if (doc.data().username == currentUser) {
         inLead = true;
       }
       //doc.data() is never undefined for query doc snapshots
@@ -374,12 +374,7 @@ function getPlayers(user) {
       //doc.data().score gibt nur die scores zurück
       let lead = document.createElement("li");
       let text = document.createTextNode(
-        "Place" +
-          counter +
-          " user: " +
-          doc.data().username +
-          " score:" +
-          doc.data().score
+        counter + ".  " + doc.data().username + doc.data().score
       );
       lead.appendChild(text);
       leaderboard.appendChild(lead);
@@ -387,13 +382,13 @@ function getPlayers(user) {
     });
 
     if (inLead === false) {
-      getCurrentUsersPlace(user);
+      getCurrentUsersPlace(user.username);
     } else {
     }
   });
 }
 
-function getCurrentUsersPlace(user) {
+function getCurrentUsersPlace(currentUser) {
   let i = 0;
   const db = firebase.firestore();
   //if not sorted the position doesn't make sense
@@ -402,7 +397,7 @@ function getCurrentUsersPlace(user) {
   query.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
       i++;
-      if (doc.data().username == user.username) {
+      if (doc.data().username == currentUser) {
         let dot = document.createElement("li");
         let dots = document.createTextNode("...");
         dot.appendChild(dots);
@@ -410,8 +405,8 @@ function getCurrentUsersPlace(user) {
         console.log(doc.data().username + "  " + i);
         let lead = document.createElement("li");
         let text = document.createTextNode(
-          "Place" +
-            i +
+          i +
+            "." +
             " user: " +
             doc.data().username +
             " score:" +
