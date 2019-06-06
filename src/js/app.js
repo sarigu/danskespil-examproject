@@ -491,46 +491,47 @@ function getCurrentUsersPlace(currentUser) {
     leaderboardScores.appendChild(empty);
     leaderboardNames.appendChild(lead);
     leaderboardScores.appendChild(leadScore);
-  }
-  //not limit to the order since we want to find the current users positioning
-  var query = userRef.orderBy("score", "desc");
-  query.get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-      //increases the counter each loop, to see how many loops went by until the current user appears
-      //a workaround because firebase apparently can't find the position of data in the database
-      counter++;
+  } else {
+    //not limit to the order since we want to find the current users positioning
+    var query = userRef.orderBy("score", "desc");
+    query.get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        //increases the counter each loop, to see how many loops went by until the current user appears
+        //a workaround because firebase apparently can't find the position of data in the database
+        counter++;
 
-      //checks if the username in the document is equal to the current user, if so it adds the name and score to the list
-      if (doc.data().username == currentUser) {
-        let dot = document.createElement("li");
-        let dots = document.createTextNode("...");
-        dot.appendChild(dots);
+        //checks if the username in the document is equal to the current user, if so it adds the name and score to the list
+        if (doc.data().username == currentUser) {
+          let dot = document.createElement("li");
+          let dots = document.createTextNode("...");
+          dot.appendChild(dots);
 
-        let empty = document.createElement("li");
-        let emptyspace = document.createTextNode("...");
-        empty.appendChild(emptyspace);
+          let empty = document.createElement("li");
+          let emptyspace = document.createTextNode("...");
+          empty.appendChild(emptyspace);
 
-        let lead = document.createElement("li");
-        let text = document.createTextNode(
-          counter + ".  " + doc.data().username
-        );
-        lead.appendChild(text);
-        lead.style.padding = "10px";
-        lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-        lead.style.width = "100%";
+          let lead = document.createElement("li");
+          let text = document.createTextNode(
+            counter + ".  " + doc.data().username
+          );
+          lead.appendChild(text);
+          lead.style.padding = "10px";
+          lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+          lead.style.width = "100%";
 
-        let leadScore = document.createElement("li");
-        let textScore = document.createTextNode(doc.data().score);
-        leadScore.appendChild(textScore);
-        leadScore.style.padding = "10px";
-        leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
-        leadScore.style.width = "100%";
+          let leadScore = document.createElement("li");
+          let textScore = document.createTextNode(doc.data().score);
+          leadScore.appendChild(textScore);
+          leadScore.style.padding = "10px";
+          leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+          leadScore.style.width = "100%";
 
-        leaderboardNames.appendChild(dot);
-        leaderboardScores.appendChild(empty);
-        leaderboardNames.appendChild(lead);
-        leaderboardScores.appendChild(leadScore);
-      }
+          leaderboardNames.appendChild(dot);
+          leaderboardScores.appendChild(empty);
+          leaderboardNames.appendChild(lead);
+          leaderboardScores.appendChild(leadScore);
+        }
+      });
     });
-  });
+  }
 }
