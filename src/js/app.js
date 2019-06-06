@@ -127,6 +127,7 @@ function spin() {
   // Remove 1 spin
   user.spins = user.spins - 1;
   console.log("Spins left: ", user.spins);
+
   let spin = document.querySelector(".playerScore");
   setTimeout(() => {
     spin.innerHTML = user.spins;
@@ -136,8 +137,8 @@ function spin() {
   if (user.spins > 0) {
     // Remove 1 spin
     let score = document.querySelector("#PlayerScore");
-    user.score = user.score + Number(score.innerText);
-    // console.log(user);
+    user.score = Number(score.innerText);
+    console.log(user.score);
   } else {
     // Is user logged in?
     if (!user.username) {
@@ -156,8 +157,6 @@ function spin() {
       }
     } else {
       // User is logged in
-      // Notify: Oh shoot, you have no more spins, here are your options:....
-      // TODO: Make the modal and call it here
       $(".playFancy").addClass("disabled");
       setTimeout(() => {
         outOfSpinsModalOpen();
@@ -458,6 +457,7 @@ function getPlayers(currentUser) {
 function getCurrentUsersPlace(currentUser) {
   let counter = 0;
   const db = firebase.firestore();
+  console.log("user score", user.score);
 
   //if not sorted the position wouldn't make sense
   userRef = db.collection("users");
@@ -477,9 +477,10 @@ function getCurrentUsersPlace(currentUser) {
     lead.style.padding = "4px";
     lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
     lead.style.width = "100%";
-
+// sdfghjklkjhgfdfghjkl;lkjhgffghjklkjhgfghjklkjhgc
     let leadScore = document.createElement("li");
     let textScore = document.createTextNode(user.score);
+    
     leadScore.appendChild(textScore);
     leadScore.style.padding = "4px";
     leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
