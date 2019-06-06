@@ -47,11 +47,15 @@ let user = {
   score: 1000
 };
 
+let leaderboardNames = document.querySelector("#leaderboardNames");
+let leaderboardScores = document.querySelector("#leaderboardScores");
+
 // INIT
 
 window.addEventListener("DOMContentLoaded", init());
 
 function init() {
+  getTopPlayersOnce();
   // Event listeners
   formEl.addEventListener("submit", onSignup);
   formSignInEl.addEventListener("submit", onSignin);
@@ -345,12 +349,30 @@ firebase.auth().onAuthStateChanged(userAuth => {
 
 //LEADERBOARD
 
-let leaderboardNames = document.querySelector("#leaderboardNames");
-let leaderboardScores = document.querySelector("#leaderboardScores");
+function getTopPlayersOnce() {
+  let counter = 1;
+  const db = firebase.firestore();
+  //Reference to the collection
+  userRef = db.collection("users");
+  var query = userRef.orderBy("score", "desc").limit(9);
+  query.get().then(function(querySnapshot) {
+    querySnapshot.forEach(function(doc) {
+      let lead = document.createElement("li");
+      let text = document.createTextNode(counter + ".  " + doc.data().username);
+      lead.appendChild(text);
+      let leadScore = document.createElement("li");
+      let textScore = document.createTextNode(doc.data().score);
+      leadScore.appendChild(textScore);
+
+      leaderboardNames.appendChild(lead);
+      leaderboardScores.appendChild(leadScore);
+
+      counter++;
+    });
+  });
+}
 
 function getPlayers(currentUser) {
-  console.log("Hallo wie gehts");
-  console.log(currentUser);
   let counter = 1;
   const db = firebase.firestore();
   let inLead = false;
@@ -417,10 +439,16 @@ function getCurrentUsersPlace(currentUser) {
         let lead = document.createElement("li");
         let text = document.createTextNode(i + ".  " + doc.data().username);
         lead.appendChild(text);
+        lead.style.padding = "10px";
+        lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        lead.style.width = "100%";
 
         let leadScore = document.createElement("li");
         let textScore = document.createTextNode(doc.data().score);
         leadScore.appendChild(textScore);
+        leadScore.style.padding = "10px";
+        leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        leadScore.style.width = "100%";
 
         leaderboardNames.appendChild(dot);
         leaderboardScores.appendChild(empty);
