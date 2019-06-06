@@ -406,23 +406,49 @@ function getPlayers(currentUser) {
       //Check if the current user has one of the top 9 scores
       if (doc.data().username == currentUser) {
         inLead = true;
+
+        let lead = document.createElement("li");
+        let text = document.createTextNode(
+          counter + ".  " + doc.data().username
+        );
+
+        //highlighting the user
+        lead.appendChild(text);
+        lead.style.padding = "10px";
+        lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        lead.style.width = "100%";
+
+        let leadScore = document.createElement("li");
+        let textScore = document.createTextNode(doc.data().score);
+        leadScore.appendChild(textScore);
+        leadScore.style.padding = "10px";
+        leadScore.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+        leadScore.style.width = "100%";
+
+        leaderboardNames.appendChild(lead);
+        leaderboardScores.appendChild(leadScore);
+
+        counter++;
+      } else {
+        //adds the username from the current document from the database to the list item
+        let lead = document.createElement("li");
+        let text = document.createTextNode(
+          counter + ".  " + doc.data().username
+        );
+        lead.appendChild(text);
+        //adds the score from the current document from the database to the list item
+        let leadScore = document.createElement("li");
+        let textScore = document.createTextNode(doc.data().score);
+        leadScore.appendChild(textScore);
+
+        //appends list items to the lists for names
+        leaderboardNames.appendChild(lead);
+        //appends list items to the lists for scores
+        leaderboardScores.appendChild(leadScore);
+
+        //increases counter; counter is used to count the place of each player
+        counter++;
       }
-      //adds the username from the current document from the database to the list item
-      let lead = document.createElement("li");
-      let text = document.createTextNode(counter + ".  " + doc.data().username);
-      lead.appendChild(text);
-      //adds the score from the current document from the database to the list item
-      let leadScore = document.createElement("li");
-      let textScore = document.createTextNode(doc.data().score);
-      leadScore.appendChild(textScore);
-
-      //appends list items to the lists for names
-      leaderboardNames.appendChild(lead);
-      //appends list items to the lists for scores
-      leaderboardScores.appendChild(leadScore);
-
-      //increases counter; counter is used to count the place of each player
-      counter++;
     });
 
     //checks if the current user was in the returned data, if not it calls the function to look for the place the user is on right now
@@ -434,7 +460,6 @@ function getPlayers(currentUser) {
 }
 
 function getCurrentUsersPlace(currentUser) {
-  console.log("das ist die zweite funktion");
   let counter = 0;
   const db = firebase.firestore();
 
