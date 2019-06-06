@@ -110,18 +110,13 @@ function playIntro() {
 // Gameplay
 function spin() {
   console.log("spin clicked");
-
   // Remove 1 spin
-  setTimeout(() => {
-    user.spins = user.spins - 1;
-  }, 1000);
-
+  user.spins = user.spins - 1;
   console.log("Spins left: ", user.spins);
-
   let spin = document.querySelector(".playerScore");
   setTimeout(() => {
     spin.innerHTML = user.spins;
-  }, 1000);
+  }, 100);
 
   // Spins left?
   if (user.spins > 0) {
@@ -138,7 +133,7 @@ function spin() {
         // No. Ask to subscribe (subscribe modal)
         setTimeout(() => {
           subscribeModalOpen();
-        }, 2500);
+        }, 3000);
       } else {
         // Yes, subscribed. Ask to sign up (signup modal)
         setTimeout(() => {

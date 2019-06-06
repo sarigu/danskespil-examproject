@@ -639,7 +639,7 @@
               let buttonSound = document.getElementById("myAudioButton"); 
               // buttonSound.pause(); 
               // buttonSound.currentTime=0.0;
-              buttonSound.volume=.2;
+              buttonSound.volume=.1;
               buttonSound.play(); 
               let rollingSound = document.getElementById("myAudio");
               // rollingSound.pause(); 
@@ -652,7 +652,7 @@
           let spinsleft=document.querySelector("#spinAmount");
           spinsleft.classList.remove("animate2");
           setTimeout(() => {
-            $(".playFancy").removeClass("disabled")}, 2500);
+            $(".playFancy").removeClass("disabled")}, 1500);
             $(".playFancy").removeClass("faded");
           },
 
@@ -672,9 +672,7 @@
                 playercore.classList.add("animate1");
             }, 1000);
               // console.log(Number(winAmount));
-              setTimeout(() => {
-                document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
-              }, 1000);
+              document.querySelector("#PlayerScore").innerText=500*winCount+Number(winAmount);
               document.querySelector("#winScore").innerText=currentScore;
               let winningSound1 = document.getElementById("myAudioScore"); 
               // winningSound1.pause();
