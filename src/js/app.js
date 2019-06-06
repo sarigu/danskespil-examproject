@@ -377,39 +377,41 @@ function getPlayers(currentUser) {
   const db = firebase.firestore();
   let inLead = false;
 
-  //Delete current list
-
-  // As long as <ul> has a child node, remove it
+  //Delete the current list as long as <ul> has a child nodes
   while (leaderboardNames.hasChildNodes() && leaderboardScores.hasChildNodes) {
     leaderboardNames.removeChild(leaderboardNames.firstChild);
     leaderboardScores.removeChild(leaderboardScores.firstChild);
   }
   //Reference to the collection
   userRef = db.collection("users");
+
+  //orders the data by score, from top to bottom and the return is limited to 9
   var query = userRef.orderBy("score", "desc").limit(9);
   query.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
+      //Check if the current user has one of the top 9 scores
       if (doc.data().username == currentUser) {
         inLead = true;
       }
-      //doc.data() is never undefined for query doc snapshots
-      //console.log(doc.id, " => ", doc.data());
-      //console.log("score:" + doc.data().score + "user: " + doc.data().username);
-      //console.log(doc.data());
-      //doc.data().score gibt nur die scores zurück
+      //adds the username from the current document from the database to the list item
       let lead = document.createElement("li");
       let text = document.createTextNode(counter + ".  " + doc.data().username);
       lead.appendChild(text);
+      //adds the score from the current document from the database to the list item
       let leadScore = document.createElement("li");
       let textScore = document.createTextNode(doc.data().score);
       leadScore.appendChild(textScore);
 
+      //appends list items to the lists for names
       leaderboardNames.appendChild(lead);
+      //appends list items to the lists for scores
       leaderboardScores.appendChild(leadScore);
 
+      //increases counter; counter is used to count the place of each player
       counter++;
     });
 
+    //checks if the current user was in the returned data, if not it calls the function to look for the place the user is on right now
     if (inLead === false) {
       getCurrentUsersPlace(currentUser);
     } else {
@@ -419,14 +421,20 @@ function getPlayers(currentUser) {
 
 function getCurrentUsersPlace(currentUser) {
   console.log("das ist die zweite funktion");
-  let i = 0;
+  let counter = 0;
   const db = firebase.firestore();
-  //if not sorted the position doesn't make sense
+
+  //if not sorted the position wouldn't make sense
   userRef = db.collection("users");
+  //not limit to the order since we want to find the current users positioning
   var query = userRef.orderBy("score", "desc");
   query.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-      i++;
+      //increases the counter each loop, to see how many loops went by until the current user appears
+      //a workaround because firebase apparently can't find the position of data in the database
+      counter++;
+
+      //checks if the username in the document is equal to the current user, if so it adds the name and score to the list
       if (doc.data().username == currentUser) {
         let dot = document.createElement("li");
         let dots = document.createTextNode("...");
@@ -437,7 +445,9 @@ function getCurrentUsersPlace(currentUser) {
         empty.appendChild(emptyspace);
 
         let lead = document.createElement("li");
-        let text = document.createTextNode(i + ".  " + doc.data().username);
+        let text = document.createTextNode(
+          counter + ".  " + doc.data().username
+        );
         lead.appendChild(text);
         lead.style.padding = "10px";
         lead.style.backgroundColor = "rgba(255, 255, 255, 0.3)";
@@ -458,6 +468,3 @@ function getCurrentUsersPlace(currentUser) {
     });
   });
 }
-
-//for alles i++ und wenn uid irgendwas gleicht dann stopp
-//parent.removeChild(child);
