@@ -43,7 +43,7 @@ let isModalWelcomeNewSeen = false;
 let user = {
   username: "",
   email: "",
-  spins: 0,
+  spins: 5,
   score: 1000
 };
 
@@ -112,9 +112,6 @@ function playIntro() {
   introSound.play();
 }
 function checkSpins() {
-  console.log(
-    "Hey,i don't have spins, so I will disable 'Spin' button for ya!"
-  );
   if (user.spins < 1) {
     document.querySelector(".playFancy").classList.add("disabled");
     // $(".playFancy").addClass("disabled");
